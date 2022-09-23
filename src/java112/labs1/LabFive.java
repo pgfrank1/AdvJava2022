@@ -13,7 +13,7 @@ public class LabFive {
     /**
      * The main method checks to see if there has been 2 arguments entered. If
      * there is, call the run method to create the file and message within.
-     * @param args
+     * @param args user entered arguments
      */
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -27,8 +27,8 @@ public class LabFive {
     /**
      * This method takes in 2 parameters, attempts to create the file and place
      * the message within. It then closes the printWriter.
-     * @param fileName
-     * @param userMessage
+     * @param fileName user entered file name
+     * @param userMessage user entered message
      */
     public void run (String fileName, String userMessage) {
         PrintWriter printWriter = null;

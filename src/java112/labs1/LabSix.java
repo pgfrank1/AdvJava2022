@@ -13,7 +13,7 @@ public class LabSix {
      * The main method checks to make sure there are 2 arguments. If there is,
      * call the run method and send the 2 arguments to that method.
      * 
-     * @param args
+     * @param args user entered arguments for file input and output
      */
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -28,8 +28,8 @@ public class LabSix {
      * The run method takes 2 parameters, reads the specified input file, and
      * outputs each line of the input file to a new file named by the user.
      * 
-     * @param inputFilePath
-     * @param outputFilePath
+     * @param inputFilePath user entered file input
+     * @param outputFilePath user entered file output
      */
     public void run(String inputFilePath, String outputFilePath) {
         // Create an input and output reader and writer respectfully.

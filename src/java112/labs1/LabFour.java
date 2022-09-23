@@ -24,7 +24,7 @@ public class LabFour {
     }
     /**
      * This method recieves the user's input and attempts to open the file.
-     * @param input
+     * @param input user entered file name
      */
     public void run (String input) {
         /** Makes sure that the "finally" exception can get the reader variable. */
