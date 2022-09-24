@@ -43,8 +43,10 @@ public class LabSeven {
      * @param fileName user entered file name
      */
     public void run(String fileName) {
+        // Instantiate the ArrayList
         outputList = new ArrayList<>();
 
+        // Add words to the list
         outputList.add("one");
         outputList.add("two");
         outputList.add("three");
@@ -56,6 +58,8 @@ public class LabSeven {
         outputList.add("nine");
         outputList.add("ten");
 
+        // Call the writeListToOutputFile and pass through the user entered
+        // file name.
         writeListToOutputFile(fileName);
     }
 
@@ -68,6 +72,8 @@ public class LabSeven {
         // Create an input and output reader and writer respectfully.
         PrintWriter outputWriter = null;
 
+        // Attempt to create a file and output each word from the list on each
+        // line.
         try {
             outputWriter = new PrintWriter(new BufferedWriter(
                     new FileWriter(fileName)));
@@ -75,6 +81,7 @@ public class LabSeven {
             for (String numbers : outputList) {
                 outputWriter.println(numbers);
             }
+          // Catch possible exceptions that may occur
         } catch (IOException ioException) {
             System.out.println("File could not be made");
         } catch (Exception exception) {
