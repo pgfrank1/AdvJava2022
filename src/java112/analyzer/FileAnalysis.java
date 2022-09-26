@@ -2,8 +2,12 @@ package java112.analyzer;
 
 import java.io.*;
 
+
+
 public class FileAnalysis {
     static final int COMMAND_ARGS = 1;
+    static final String OUTPUT_PATH = "./output/";
+
 
     private FileSummaryAnalyzer summaryAnalyzer;
     private DistinctTokensAnalyzer distinctAnalyzer;
@@ -17,16 +21,17 @@ public class FileAnalysis {
             summaryAnalyzer = new FileSummaryAnalyzer();
             distinctAnalyzer = new DistinctTokensAnalyzer();
 
-            openInputFile(arguments[0]);            
+            openInputFile(arguments[0]);
+            writeOutputFiles(arguments[0]);       
         }
     }
 
     public void openInputFile(String userInputFile) {
         try (BufferedReader input = new BufferedReader(new FileReader(
                 userInputFile))){
-            while (input.ready()) {
-                distinctAnalyzer.processToken(input.readLine());
-            }
+                    while (input.ready()) {
+                        distinctAnalyzer.processToken(input.readLine());
+                    }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("File was not found. Please try again.");
         } catch (IOException ioException) {
@@ -37,7 +42,8 @@ public class FileAnalysis {
         }
     }
 
-    public void writeOutputFiles() {
+    public void writeOutputFiles(String userInputFile) {
+        distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH);
 
     }
 }
