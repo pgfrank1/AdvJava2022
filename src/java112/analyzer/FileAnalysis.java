@@ -22,9 +22,8 @@ public class FileAnalysis {
     }
 
     public void openInputFile(String userInputFile) {
-        BufferedReader input = null;
-        try {
-            input = new BufferedReader(new FileReader(userInputFile));
+        try (BufferedReader input = new BufferedReader(new FileReader(
+                userInputFile))){
             while (input.ready()) {
                 distinctAnalyzer.processToken(input.readLine());
             }
@@ -35,17 +34,6 @@ public class FileAnalysis {
                     + "the file.");
         } catch (Exception exception) {
             exception.printStackTrace();
-        } finally {
-            try {
-                if (input != null) {
-                    input.close();
-                }
-            } catch(IOException ioException) {
-                System.out.println("There was an issue attempting to close "
-                        + "the input file.");
-            } catch(Exception exception) {
-                exception.printStackTrace();
-            }
         }
     }
 

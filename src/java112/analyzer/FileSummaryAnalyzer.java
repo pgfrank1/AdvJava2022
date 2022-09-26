@@ -13,7 +13,11 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
 
 
     public void processToken(String token) {
-        System.out.println(token);
+        token.split("\\W");
+        if (token.length() != 0) {
+            token.split("\\W");
+            System.out.println(token);
+        }
     }
     
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
