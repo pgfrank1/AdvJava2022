@@ -36,13 +36,7 @@ public class FileAnalysis {
      * @param arguments user entered input file
      */
     public void analyze(String[] arguments) {
-        if (arguments.length != COMMAND_ARGS) {
-            System.out.println("You have not entered the correct amount of"
-                    + " arguments. Please only enter 1 argument.");
-        } else {
-            openInputFile(arguments[0]);
-            writeOutputFiles(arguments[0]);       
-        }
+        passUserFile(testForOneArgument(arguments));
     }
 
     /**
@@ -86,7 +80,17 @@ public class FileAnalysis {
      * @param userInputFile user entered input file
      */
     public void writeOutputFiles(String userInputFile) {
-        distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH);
-        summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH);
+        distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+                + "distinct_tokens.txt");
+        summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+                + "summary.txt");
+    }
+
+    public String testForOneArgument(String[] userInput) {
+        if (userInput.length != COMMAND_ARGS) {
+            System.out.println("You have not entered the correct amount of"
+                    + " arguments. Please only enter 1 argument.");
+        }
+        return userInput[0];
     }
 }

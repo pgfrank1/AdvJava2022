@@ -34,7 +34,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
     public void generateOutputFile(String inputFilePath, String outputFilePath)
     {
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
-            new FileWriter(outputFilePath + "summary.txt")));) {
+            new FileWriter(outputFilePath)));) {
                 File fileInformation = new File(inputFilePath);
                 Date currentDate = new Date();
                 DateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd "
