@@ -47,15 +47,27 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
             }
         }
     }
-    
+
+    /**
+     * This method recieves both input and output paths to gain information
+     * and save the information respectively.
+     * 
+     * @param inputFilePath user entered input file
+     * @param outputFilePath file summary output path
+     */
     public void generateOutputFile(String inputFilePath, String outputFilePath)
     {
+        // Attempt to create a file in the output path specified
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
             new FileWriter(outputFilePath)));) {
+                // Gets the input file's information
                 File fileInformation = new File(inputFilePath);
+                // Instantiate the Date class
                 Date currentDate = new Date();
+                // Create the date format for date last modified
                 DateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd "
                         + "HH:mm:ss z yyyy");
+                // Outputs all of the file information required
                 fileOutput.println("Application: Text File Information\nAuthor:"
                         + " Patrick Frank\nAuthor email: pgfrank@madisoncollege"
                         + ".edu\nFile: " + fileInformation.getAbsolutePath() 
