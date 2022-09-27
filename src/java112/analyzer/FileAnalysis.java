@@ -30,7 +30,9 @@ public class FileAnalysis {
         try (BufferedReader input = new BufferedReader(new FileReader(
                 userInputFile))){
                     while (input.ready()) {
-                        distinctAnalyzer.processToken(input.readLine());
+                        String fileLineInput = input.readLine();
+                        distinctAnalyzer.processToken(fileLineInput);
+                        summaryAnalyzer.processToken(fileLineInput);
                     }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("File was not found. Please try again.");
@@ -44,6 +46,6 @@ public class FileAnalysis {
 
     public void writeOutputFiles(String userInputFile) {
         distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH);
-
+        summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH);
     }
 }
