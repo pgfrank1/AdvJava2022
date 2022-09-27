@@ -11,6 +11,11 @@ public class FileAnalysis {
 
     private FileSummaryAnalyzer summaryAnalyzer;
     private DistinctTokensAnalyzer distinctAnalyzer;
+
+    public FileAnalysis() {
+        summaryAnalyzer = new FileSummaryAnalyzer();
+        distinctAnalyzer = new DistinctTokensAnalyzer();
+    }
     
 
     public void analyze(String[] arguments) {
@@ -18,9 +23,6 @@ public class FileAnalysis {
             System.out.println("You have not entered the correct amount of"
                     + " arguments. Please only enter 1 argument.");
         } else {
-            summaryAnalyzer = new FileSummaryAnalyzer();
-            distinctAnalyzer = new DistinctTokensAnalyzer();
-
             openInputFile(arguments[0]);
             writeOutputFiles(arguments[0]);       
         }
@@ -31,8 +33,7 @@ public class FileAnalysis {
                 userInputFile))){
                     while (input.ready()) {
                         String fileLineInput = input.readLine();
-                        distinctAnalyzer.processToken(fileLineInput);
-                        summaryAnalyzer.processToken(fileLineInput);
+                        passUserFile(fileLineInput);
                     }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("File was not found. Please try again.");
@@ -42,6 +43,11 @@ public class FileAnalysis {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void passUserFile(String userInputFile) {
+        distinctAnalyzer.processToken(userInputFile);
+        summaryAnalyzer.processToken(userInputFile);
     }
 
     public void writeOutputFiles(String userInputFile) {
