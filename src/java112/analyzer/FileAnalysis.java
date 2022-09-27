@@ -48,7 +48,7 @@ public class FileAnalysis {
      */
     public void openInputFile(String userInputFile) {
         try (BufferedReader input = new BufferedReader(new FileReader(
-                userInputFile))){
+                userInputFile))) {
                     while (input.ready()) {
                         String fileLineInput = input.readLine();
                         passUserFile(fileLineInput);
@@ -73,7 +73,7 @@ public class FileAnalysis {
     }
 
     /**
-     * This method calls upon the generateOutputFiles from both\
+     * This method calls upon the generateOutputFiles from both
      * distinctAnalyzer and summaryAnalyzer classes. It sends the user entered
      * file and the desired output path to the methods.
      * 
@@ -86,6 +86,14 @@ public class FileAnalysis {
                 + "summary.txt");
     }
 
+    /**
+     * This method recieves the user entered arguments and ensures that there
+     * is only 1 argument entered. If there is only one, it returns the single
+     * argument.
+     * 
+     * @param userInput user entered arguments
+     * @return userInput with only one argument
+     */
     public String testForOneArgument(String[] userInput) {
         if (userInput.length != COMMAND_ARGS) {
             System.out.println("You have not entered the correct amount of"
