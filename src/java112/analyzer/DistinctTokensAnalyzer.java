@@ -1,6 +1,7 @@
 package java112.analyzer;
 
 import java.util.*;
+import java.io.*;
 
 /**
  * This class looks at the input txt file and analyzes each unique token within
@@ -54,6 +55,16 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
     }
     
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
-        
+        try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
+                new FileWriter(outputFilePath + "distinct_tokens.txt")))) {
+                    for (String uniqueTokens : distinctTokens) {
+                        fileOutput.println(uniqueTokens);
+                    }
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            System.out.println("There was an error outputting the file.");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 }
