@@ -55,11 +55,24 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
         }
     }
     
-    /** */
+    /**
+     * This method creates a print writer object to output each unique token found
+     * in the file path specified.
+     * 
+     * @param inputFilePath user entered input file path
+     * @param outputFilePath path the unique tokens file with be saved to
+     *  
+     */
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
+        /**
+         * Attempt to create a file at the specifed output path
+         */
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(outputFilePath)))) {
                     for (String uniqueTokens : distinctTokens) {
+                        /**
+                         * Prints each token to the output file
+                         */
                         fileOutput.println(uniqueTokens);
                     }
         } catch (IOException ioException) {
