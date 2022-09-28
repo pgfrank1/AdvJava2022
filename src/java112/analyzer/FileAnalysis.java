@@ -48,7 +48,10 @@ public class FileAnalysis {
      * @param arguments user entered input file
      */
     public void analyze(String[] arguments) {
-        passUserFile(testForOneArgument(arguments));
+        if (testForOneArgument(arguments)) {
+            openInputFile(arguments[0]);
+            writeOutputFiles(arguments[0]);
+        }
     }
 
     /**
@@ -106,12 +109,13 @@ public class FileAnalysis {
      * @param userInput user entered arguments
      * @return userInput with only one argument
      */
-    public String testForOneArgument(String[] userInput) {
+    public Boolean testForOneArgument(String[] userInput) {
         if (userInput.length != COMMAND_ARGS) {
             System.out.println("You have not entered the correct amount of"
                     + " arguments. Please only enter 1 argument.");
+            return false;
         }
-        return userInput[0];
+        return true;
     }
     
 }

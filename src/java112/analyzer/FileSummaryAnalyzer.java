@@ -47,6 +47,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
                 if (splitTokens.length() > 0) {
                     // Counts the total tokens
                     totalTokensCount++;
+
                 }
             }
         }
