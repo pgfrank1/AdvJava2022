@@ -7,12 +7,21 @@ import java.io.*;
  * This class looks at the input txt file and analyzes each unique token within
  * the file. It then outputs distinct_tokens.txt file of all words on their own
  * line.
+ * 
+ * @author pgfrank
+ * @since 11.0
+ * @version 1.0
  */
 public class DistinctTokensAnalyzer implements TokenAnalyzer {
-    // Setup the TreeSet variable to keep each unique word in memory
+    /**
+     * Stores every unique token from the user entered file.
+     */
     private Set<String> distinctTokens;
 
-    // This constructor initializes distinctTokens Set<String>
+    
+    /**
+     * This constructor initializes the distinctTokens array
+     */
     public DistinctTokensAnalyzer() {
         distinctTokens = new TreeSet<>();
     }
@@ -28,7 +37,7 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * This method recieves each line of the user txt file, splits the words up
      * and adds each unique word to distinctTokens
      * 
-     * @param token
+     * @param token current line of text from user 
      */
     public void processToken(String token) {
         // Checks if the current token has any text lines without length

@@ -9,14 +9,26 @@ import java.io.*;
  * openInputFile and writeOutputFiles methods.
  * 
  * @author pgfrank
+ * @since 11.0
+ * @version 1.0
  */
 public class FileAnalysis {
-    // Declare needed constants
+    /**
+     * The amount of arguments the user is allowed to have.
+     */
     static final int COMMAND_ARGS = 1;
+    /**
+     * The beginning of the output filepath
+     */
     static final String OUTPUT_PATH = "./output/";
 
-    // Initialize 2 classes
+    /**
+     * Create an instance of the FileSummaryAnalyzer
+     */
     private FileSummaryAnalyzer summaryAnalyzer;
+    /**
+     * Create an instance of the DistinctTokensAnalyzer
+     */
     private DistinctTokensAnalyzer distinctAnalyzer;
 
     /**
@@ -101,4 +113,5 @@ public class FileAnalysis {
         }
         return userInput[0];
     }
+    
 }

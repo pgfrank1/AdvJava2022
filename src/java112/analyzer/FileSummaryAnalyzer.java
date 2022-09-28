@@ -8,6 +8,10 @@ import java.util.*;
  * This class implements the TokenAnalyzer interface. It recieves the current
  * line of text from the user entered file, splits the line further, and counts
  * each word.
+ * 
+ * @author pgfrank
+ * @since 11.0
+ * @version 1.0
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer{
     // Counts the total words from the user entered file.

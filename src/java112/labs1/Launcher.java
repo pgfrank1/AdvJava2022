@@ -1,7 +1,7 @@
 package java112.labs1;
 
 /**
- * Launcher to start the main TrailGuide process running.
+ * Launcher to. start the main TrailGuide process running.
  * //TODO: 2. What effect does the "." after "to" have?
  *
  * @author pawaite
