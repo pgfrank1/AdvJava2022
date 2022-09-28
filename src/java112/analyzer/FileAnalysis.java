@@ -88,6 +88,12 @@ public class FileAnalysis {
         }
     }
 
+    /**
+     * Splits the current line of text and iterates through each word of the
+     * line of text.
+     * 
+     * @param userText line of text from the user entered file
+     */
     public void splitUserFileText(String userText) {
             // Split the token and place the words into an array
             String[] tokenLines = userText.split("\\W");
