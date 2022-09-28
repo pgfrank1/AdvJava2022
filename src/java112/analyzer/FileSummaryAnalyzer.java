@@ -36,20 +36,11 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
      * @param token current line of text from the user entered file.
      */
     public void processToken(String token) {
-        // Checks if the current line of text has a length
+        // Tests the token length after splitting to make sure there are
+        // no lines without length.
         if (token.length() > 0) {
-            // Split the token and place the words into an array
-            String[] tokenLines = token.split("\\W");
-            // Loops through the tokenLines variable
-            for (String splitTokens : tokenLines) {
-                // Tests the token length after splitting to make sure there are
-                // no lines without length.
-                if (splitTokens.length() > 0) {
-                    // Counts the total tokens
-                    totalTokensCount++;
-
-                }
-            }
+            // Counts the total tokens
+            totalTokensCount++;
         }
     }
 

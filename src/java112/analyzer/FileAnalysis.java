@@ -83,10 +83,20 @@ public class FileAnalysis {
      * @param userInputFile user entered input file
      */
     public void passUserFile(String userInputFile) {
-        distinctAnalyzer.processToken(userInputFile);
-        summaryAnalyzer.processToken(userInputFile);
+        if (userInputFile.length() > 0) {
+            splitUserFileText(userInputFile);
+        }
     }
 
+    public void splitUserFileText(String userText) {
+            // Split the token and place the words into an array
+            String[] tokenLines = userText.split("\\W");
+            // Loops through the tokenLines variable
+            for (String splitTokens : tokenLines) {
+                distinctAnalyzer.processToken(splitTokens);
+                summaryAnalyzer.processToken(splitTokens);
+            }
+    }
     /**
      * This method calls upon the generateOutputFiles from both
      * distinctAnalyzer and summaryAnalyzer classes. It sends the user entered
