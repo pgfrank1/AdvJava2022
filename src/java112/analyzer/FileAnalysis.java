@@ -56,7 +56,19 @@ public class FileAnalysis {
                     + " arguments. Please only enter 1 argument.");
         }
     }
-
+    
+    /**
+     * This method recieves the user entered arguments and ensures that there
+     * is only 1 argument entered. If there is only one, it returns the single
+     * argument.
+     * 
+     * @param userInput user entered arguments
+     * @return userInput with only one argument
+     */
+    public Boolean testForOneArgument(String[] userInput) {
+        return (userInput.length == COMMAND_ARGS);
+    }
+    
     /**
      * This class takes the user entered file, attempts to open the file
      * specified then sends each line of the file to the passUserFile method.
@@ -101,14 +113,24 @@ public class FileAnalysis {
             // Split the token and place the words into an array
             String[] tokenLines = userText.split("\\W");
             // Loops through the tokenLines variable
-            for (String splitTokens : tokenLines) {
-                // If the length of the current token is more than 0, process
-                // the token
-                if (splitTokens.length() > 0) {
-                    distinctAnalyzer.processToken(splitTokens);
-                    summaryAnalyzer.processToken(splitTokens);
-                }
+            sendTokenForProcessing(tokenLines);
+    }
+
+    /**
+     * This method checks to make sure each token has a length more than 0 and
+     * sends the current token to distinctAnalyzer and summaryAnalyzer.
+     * 
+     * @param tokens current line of text from the user entered file now split
+     */
+    public void sendTokenForProcessing(String[] tokens) {
+        for (String splitTokens : tokens) {
+            // If the length of the current token is more than 0, process
+            // the token
+            if (splitTokens.length() > 0) {
+                distinctAnalyzer.processToken(splitTokens);
+                summaryAnalyzer.processToken(splitTokens);
             }
+        }
     }
     /**
      * This method calls upon the generateOutputFiles from both
@@ -124,20 +146,5 @@ public class FileAnalysis {
                 + "summary.txt");
     }
 
-    /**
-     * This method recieves the user entered arguments and ensures that there
-     * is only 1 argument entered. If there is only one, it returns the single
-     * argument.
-     * 
-     * @param userInput user entered arguments
-     * @return userInput with only one argument
-     */
-    public Boolean testForOneArgument(String[] userInput) {
-        if (userInput.length == COMMAND_ARGS) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
+
 }

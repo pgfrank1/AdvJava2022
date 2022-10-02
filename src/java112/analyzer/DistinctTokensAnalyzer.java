@@ -34,8 +34,8 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
         return distinctTokens;
     }
     /**
-     * This method recieves each line of the user txt file, splits the words up
-     * and adds each unique word to distinctTokens
+     * This method recieves each line of the user txt file and adds each
+     * unique word to distinctTokens
      * 
      * @param token current line of text from user 
      */

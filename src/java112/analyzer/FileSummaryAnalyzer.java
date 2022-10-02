@@ -31,7 +31,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
     }
     /**
      * This method recieves the current line of text from the user entered
-     * file, splits the line of text, then counts each word.
+     * file then counts each word.
      * 
      * @param token current line of text from the user entered file.
      */
