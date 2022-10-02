@@ -59,16 +59,16 @@ public class FileAnalysis {
     
     /**
      * This method recieves the user entered arguments and ensures that there
-     * is only 1 argument entered. If there is only one, it returns the single
-     * argument.
+     * is only 1 argument entered. If there is only one, it returns true
      * 
      * @param userInput user entered arguments
-     * @return userInput with only one argument
+     * @return true or false if there is only one argument
      */
     public Boolean testForOneArgument(String[] userInput) {
+        // Returns true or false
         return (userInput.length == COMMAND_ARGS);
     }
-    
+
     /**
      * This class takes the user entered file, attempts to open the file
      * specified then sends each line of the file to the passUserFile method.
@@ -80,25 +80,31 @@ public class FileAnalysis {
         try (BufferedReader input = new BufferedReader(new FileReader(
                 userInputFile))) {
                     while (input.ready()) {
+                        // Reads each line from the user entered file
                         String fileLineInput = input.readLine();
+                        // Check the current line of the user entered file
                         passUserFile(fileLineInput);
                     }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("File was not found. Please try again.");
+            fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
             System.out.println("There was an issue trying to open"
                     + "the file.");
+            ioException.printStackTrace();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
     /**
-     * This method passes the user entered file to each Analyzer class
+     * This method passes the user entered file to each Analyzer class if the 
+     * length of the current line of text is more than 0
      * 
      * @param userInputFile user entered input file
      */
     public void passUserFile(String userInputFile) {
         if (userInputFile.length() > 0) {
+            // Split the text of the current file line
             splitUserFileText(userInputFile);
         }
     }
@@ -112,7 +118,7 @@ public class FileAnalysis {
     public void splitUserFileText(String userText) {
             // Split the token and place the words into an array
             String[] tokenLines = userText.split("\\W");
-            // Loops through the tokenLines variable
+            // Send the newly made array to the sendTokenForProcessing method
             sendTokenForProcessing(tokenLines);
     }
 
@@ -123,6 +129,7 @@ public class FileAnalysis {
      * @param tokens current line of text from the user entered file now split
      */
     public void sendTokenForProcessing(String[] tokens) {
+        // Loops through the recieved array
         for (String splitTokens : tokens) {
             // If the length of the current token is more than 0, process
             // the token
