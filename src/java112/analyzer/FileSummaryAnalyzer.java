@@ -11,7 +11,7 @@ import java.util.*;
  * 
  * @author pgfrank
  * @since 11.0
- * @version 1.0
+ * @version 1.1
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer{
     // Counts the total words from the user entered file.
