@@ -40,19 +40,8 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * @param token current line of text from user 
      */
     public void processToken(String token) {
-        // Tests the token length after splitting to make sure there are
-        // no lines without length.
-        if (token.length() > 0) {
-            // Splits the text line so individual tokens appear on a
-            // single line.
-            token.split("\\W");
-            // Checks the distinctTokens variable to ensure no 
-            // duplicates occur
-            if (!distinctTokens.contains(token)) {
-                // Adds a new unique word to the distinctTokens variable
-                distinctTokens.add(token);
-            }
-        }
+        // Adds a new unique word to the distinctTokens variable
+        distinctTokens.add(token);
     }
     
     /**

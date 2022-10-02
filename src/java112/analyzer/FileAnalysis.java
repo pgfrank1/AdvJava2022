@@ -102,8 +102,12 @@ public class FileAnalysis {
             String[] tokenLines = userText.split("\\W");
             // Loops through the tokenLines variable
             for (String splitTokens : tokenLines) {
-                distinctAnalyzer.processToken(splitTokens);
-                summaryAnalyzer.processToken(splitTokens);
+                // If the length of the current token is more than 0, process
+                // the token
+                if (splitTokens.length() > 0) {
+                    distinctAnalyzer.processToken(splitTokens);
+                    summaryAnalyzer.processToken(splitTokens);
+                }
             }
     }
     /**

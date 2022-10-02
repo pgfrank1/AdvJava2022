@@ -36,12 +36,8 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
      * @param token current line of text from the user entered file.
      */
     public void processToken(String token) {
-        // Tests the token length after splitting to make sure there are
-        // no lines without length.
-        if (token.length() > 0) {
-            // Counts the total tokens
-            totalTokensCount++;
-        }
+        // Counts the total tokens
+        totalTokensCount++;
     }
 
     /**
