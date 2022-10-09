@@ -26,20 +26,20 @@ public class TrivialServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        // set the response type before sending data
-        PrintWriter  out  = response.getWriter();
-        out.print("<HTML>");
-        out.print("<HEAD><TITLE>TrivialServlet Output</TITLE></HEAD>");
-        out.print("<BODY>");
-        out.print("<h1>Patrick Frank Lab 1 Complete</h1>");
-        out.print("<a href='/java112'>Home</a><br>");
-        out.print("<img src='/java112/images/mountains.jpeg' />");
-        System.out.println("Is this logging?");
-        log("Is this logging?");
-        out.print("</BODY>");
-        out.print("</HTML>");
-        out.close();
+                response.setContentType("text/html");
+                // set the response type before sending data
+                PrintWriter  out  = response.getWriter();
+                out.print("<HTML>");
+                out.print("<HEAD><TITLE>TrivialServlet Output</TITLE></HEAD>");
+                out.print("<BODY>");
+                out.print("<h1>Patrick Frank Lab 1 Complete</h1>");
+                out.print("<a href='/java112'>Home</a><br>");
+                out.print("<img src='/java112/images/mountains.jpeg' />");
+                System.out.println("Is this logging?");
+                log("Is this logging?");
+                out.print("</BODY>");
+                out.print("</HTML>");
+                out.close();
     }
 
 }
