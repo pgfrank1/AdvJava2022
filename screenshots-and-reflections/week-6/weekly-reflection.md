@@ -1,5 +1,13 @@
 # Weekly Reflection
 
+# Lab 2:
+
+The first link isn't correct because the port number could change causing the
+link to break. The second link isn't correct because it doesn't need to link
+directly to the jsp page. You can just call the folder the index.jsp file is
+in and it will automatically open that page without telling the user the
+name of the file.
+
 #### What went well this week? 
 
 Replace this text with your response. 

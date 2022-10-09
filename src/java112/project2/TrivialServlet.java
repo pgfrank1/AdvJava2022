@@ -33,6 +33,8 @@ public class TrivialServlet extends HttpServlet {
         out.print("<HEAD><TITLE>TrivialServlet Output</TITLE></HEAD>");
         out.print("<BODY>");
         out.print("<h1>Patrick Frank Lab 1 Complete</h1>");
+        out.print("<a href='/java112'>Home</a><br>");
+        out.print("<img src='/java112/images/mountains.jpeg' />");
         System.out.println("Is this logging?");
         log("Is this logging?");
         out.print("</BODY>");
