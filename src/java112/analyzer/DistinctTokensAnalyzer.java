@@ -18,8 +18,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      */
     private Set<String> distinctTokens;
 
-    private Properties properties;
-
     
     /**
      * This constructor initializes the distinctTokens array
@@ -54,16 +52,16 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * @param outputFilePath path the unique tokens file with be saved to
      *  
      */
-    public void generateOutputFile(String inputFilePath) {
+    public void generateOutputFile(String inputFilePath, String outputFilePath) {
         /**
          * Attempt to create a file at the specifed output path
-         *
+         */
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(outputFilePath)))) {
                     for (String uniqueTokens : distinctTokens) {
                         /**
                          * Prints each token to the output file
-                         *
+                         */
                         fileOutput.println(uniqueTokens);
                     }
         } catch (IOException ioException) {
@@ -71,6 +69,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
             System.out.println("There was an error outputting the file.");
         } catch (Exception exception) {
             exception.printStackTrace();
-        }*/
+        }
     }
 }
