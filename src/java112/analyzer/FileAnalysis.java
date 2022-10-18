@@ -1,6 +1,11 @@
 package java112.analyzer;
 
+
+import java112.utilities.*;
 import java.io.*;
+import java.util.List;
+import java.util.Properties;
+
 
 
 /**
@@ -12,32 +17,24 @@ import java.io.*;
  * @since 11.0
  * @version 1.1
  */
-public class FileAnalysis {
+public class FileAnalysis implements PropertiesLoader {
     /**
      * The amount of arguments the user is allowed to have.
      */
-    static final int COMMAND_ARGS = 1;
+    static final int COMMAND_ARGS = 2;
     /**
      * The beginning of the output filepath
      */
-    static final String OUTPUT_PATH = "./output/";
-
-    /**
-     * Create an instance of the FileSummaryAnalyzer
-     */
-    private FileSummaryAnalyzer summaryAnalyzer;
-    /**
-     * Create an instance of the DistinctTokensAnalyzer
-     */
-    private DistinctTokensAnalyzer distinctAnalyzer;
+    //static final String OUTPUT_PATH = "./output/";
+    
+    private List<TokenAnalyzer> analyzers;
 
     /**
      * This constructor instantiates the two analyzer variables, summaryAnalyzer
      * and distinctAnalyzer
      */
     public FileAnalysis() {
-        summaryAnalyzer = new FileSummaryAnalyzer();
-        distinctAnalyzer = new DistinctTokensAnalyzer();
+
     }
 
     /**
@@ -48,9 +45,11 @@ public class FileAnalysis {
      * @param arguments user entered input file
      */
     public void analyze(String[] arguments) {
-        if (testForOneArgument(arguments)) {
+        if (testForTwoArguments(arguments)) {
+            Properties properties = loadProperties(arguments[1]);
+            analyzers.add(new FileSummaryAnalyzer(properties));
             openInputFile(arguments[0]);
-            writeOutputFiles(arguments[0]);
+            writeOutputFiles(properties);
         } else {
             System.out.println("You have not entered the correct amount of"
                     + " arguments. Please only enter 1 argument.");
@@ -64,7 +63,7 @@ public class FileAnalysis {
      * @param userInput user entered arguments
      * @return true or false if there is only one argument
      */
-    public Boolean testForOneArgument(String[] userInput) {
+    public Boolean testForTwoArguments(String[] userInput) {
         // Returns true or false
         return (userInput.length == COMMAND_ARGS);
     }
@@ -146,10 +145,10 @@ public class FileAnalysis {
      * 
      * @param userInputFile user entered input file
      */
-    public void writeOutputFiles(String userInputFile) {
-        distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+    public void writeOutputFiles(Properties userPropertiesFile) {
+        distinctAnalyzer.generateOutputFile(userPropertiesFile, OUTPUT_PATH
                 + "distinct_tokens.txt");
-        summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+        summaryAnalyzer.generateOutputFile(userPropertiesFile, OUTPUT_PATH
                 + "summary.txt");
     }
 

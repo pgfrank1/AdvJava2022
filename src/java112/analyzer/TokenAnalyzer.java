@@ -22,5 +22,5 @@ public interface TokenAnalyzer {
      * @param inputFilePath the user entered file path and name.
      * @param outputFilePath places output files within the ./output/ folder.
      */
-    void generateOutputFile(String inputFilePath, String outputFilePath);
+    void generateOutputFile(String inputFilePath);
 }

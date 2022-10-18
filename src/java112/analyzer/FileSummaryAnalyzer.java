@@ -17,6 +17,8 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
     // Counts the total words from the user entered file.
     private int totalTokensCount;
 
+    private Properties properties;
+
     // Constructor that initializes the totalTokensCount variable.
     public FileSummaryAnalyzer() {
         totalTokensCount = 0;
@@ -47,8 +49,8 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
      * @param inputFilePath user entered input file
      * @param outputFilePath file summary output path
      */
-    public void generateOutputFile(String inputFilePath, String outputFilePath)
-    {
+    public void generateOutputFile(String inputFilePath)
+    { /*
         // Attempt to create a file in the output path specified
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
             new FileWriter(outputFilePath)));) {
@@ -75,5 +77,5 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-    }
+   */ } 
 }
