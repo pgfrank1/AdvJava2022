@@ -1,7 +1,6 @@
 package java112.labs2;
 
 import java.util.*;
-import java.io.*;
 
 /**
  * This program shows how Hash and Tree maps are different and how they can 

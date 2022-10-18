@@ -53,8 +53,8 @@ public class FileAnalysis implements PropertiesLoader{
     public void createAnalyzerClasses(Properties properties) {
         analyzers.add(new FileSummaryAnalyzer(properties));
         analyzers.add(new DistinctTokensAnalyzer(properties));
-        //analyzers.add(new LargestTokensAnalyzer(properties));
-        //analyzers.add(new DistinctTokenCountsAnalyzer(properties));
+        analyzers.add(new LargestTokensAnalyzer(properties));
+        analyzers.add(new DistinctTokenCountsAnalyzer(properties));
         //analyzers.add(new LexicalDensityAnalyzer(properties));
     }
     
@@ -137,6 +137,8 @@ public class FileAnalysis implements PropertiesLoader{
             if (splitTokens.length() > 0) {
                 analyzers.get(0).processToken(splitTokens);
                 analyzers.get(1).processToken(splitTokens);
+                analyzers.get(2).processToken(splitTokens);
+                analyzers.get(3).processToken(splitTokens);
             }
         }
     }
@@ -151,6 +153,9 @@ public class FileAnalysis implements PropertiesLoader{
 
         analyzers.get(0).generateOutputFile(userInputFile);
         analyzers.get(1).generateOutputFile(userInputFile);
+        analyzers.get(2).generateOutputFile(userInputFile);
+        analyzers.get(3).generateOutputFile(userInputFile);
+        //analyzers.get(4).generateOutputFile(userInputFile);
 
         /* distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
                 + "distinct_tokens.txt");
