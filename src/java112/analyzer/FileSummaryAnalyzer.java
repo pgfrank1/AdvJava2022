@@ -24,6 +24,11 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
         totalTokensCount = 0;
     }
 
+    public FileSummaryAnalyzer(Properties properties) {
+        this();
+        this.properties = properties;
+    }
+
     /**
      * This getter returns the totalTokensCount variable.
      * @return total amount of tokens
@@ -50,10 +55,11 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
      * @param outputFilePath file summary output path
      */
     public void generateOutputFile(String inputFilePath)
-    { /*
+    {
         // Attempt to create a file in the output path specified
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
-            new FileWriter(outputFilePath)));) {
+            new FileWriter(properties.getProperty("output.directory")
+                    + properties.getProperty("output.file.summary"))));) {
                 // Gets the input file's information
                 File fileInformation = new File(inputFilePath);
                 // Instantiate the Date class
@@ -77,5 +83,5 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-   */ } 
+    }
 }

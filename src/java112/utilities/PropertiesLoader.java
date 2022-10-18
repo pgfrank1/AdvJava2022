@@ -23,8 +23,10 @@ public interface PropertiesLoader{
         try {
             properties.load(this.getClass().getResourceAsStream(propertiesFilePath));
         } catch (IOException ioException) {
+            System.out.println("Error attempting to open the properties file.");
             ioException.printStackTrace();
         } catch (Exception exception) {
+            System.out.println("There was an error.");
             exception.printStackTrace();
         }
         return properties;

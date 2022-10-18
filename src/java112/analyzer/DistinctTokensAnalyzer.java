@@ -20,12 +20,17 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
 
     private Properties properties;
 
-    
     /**
      * This constructor initializes the distinctTokens array
+     * @param properties
      */
     public DistinctTokensAnalyzer() {
         distinctTokens = new TreeSet<>();
+    }
+
+    public DistinctTokensAnalyzer(Properties properties) {
+        this();
+        this.properties = properties;
     }
 
     /**
@@ -57,13 +62,13 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
     public void generateOutputFile(String inputFilePath) {
         /**
          * Attempt to create a file at the specifed output path
-         *
+         */
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
-                new FileWriter(outputFilePath)))) {
+                new FileWriter(properties.getProperty("output.file.distinct"))))) {
                     for (String uniqueTokens : distinctTokens) {
                         /**
                          * Prints each token to the output file
-                         *
+                         */
                         fileOutput.println(uniqueTokens);
                     }
         } catch (IOException ioException) {
@@ -71,6 +76,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
             System.out.println("There was an error outputting the file.");
         } catch (Exception exception) {
             exception.printStackTrace();
-        }*/
+        }
     }
 }
