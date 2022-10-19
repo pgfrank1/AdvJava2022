@@ -60,7 +60,7 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * @param outputFilePath path the unique tokens file with be saved to
      *  
      */
-    public void generateOutputFile(String inputFilePath, String outputFilePath) {
+    public void generateOutputFile(String inputFilePath) {
         /**
          * Attempt to create a file at the specifed output path
          */

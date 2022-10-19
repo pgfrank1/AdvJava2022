@@ -58,19 +58,6 @@ public class FileAnalysis implements PropertiesLoader{
         //analyzers.add(new LexicalDensityAnalyzer(properties));
     }
     
-    public void createAnalyzerClasses(Properties properties) {
-        analyzers.add(new FileSummaryAnalyzer(properties));
-        analyzers.add(new DistinctTokensAnalyzer(properties));
-<<<<<<< HEAD
-        //analyzers.add(new LargestTokensAnalyzer(properties));
-        //analyzers.add(new DistinctTokenCountsAnalyzer(properties));
-=======
-        analyzers.add(new LargestTokensAnalyzer(properties));
-        analyzers.add(new DistinctTokenCountsAnalyzer(properties));
->>>>>>> 4e7a7d546d7b9ee9735ca0e98ff16ef745823de3
-        //analyzers.add(new LexicalDensityAnalyzer(properties));
-    }
-    
     /**
      * This method recieves the user entered arguments and ensures that there
      * is only 1 argument entered. If there is only one, it returns true

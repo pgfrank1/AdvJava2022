@@ -17,6 +17,8 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
     // Counts the total words from the user entered file.
     private int totalTokensCount;
 
+    private Properties properties;
+
     // Constructor that initializes the totalTokensCount variable.
     public FileSummaryAnalyzer() {
         totalTokensCount = 0;
