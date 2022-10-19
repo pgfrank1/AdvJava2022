@@ -23,8 +23,8 @@
 		<h2>Project 2:</h2>
 		<div class="box">
 		<ul>
-		<li><a href="/java112/project2FirstServlet">First 112 Servlet</a></li>
-		<li><a href="/java112/project2Properties">Project 2 Properties Servlet</a></li>
+		<li><a href="/java112/project2FirstServlet">First112Servlet</a></li>
+		<li><a href="/java112/project2Properties">Properties Servlet</a></li>
 		<li><a href="#">Whatever</a></li>
 		<li><a href="#">Simple Build</a></li>
 		<li><a href="#">Testing</a></li>
