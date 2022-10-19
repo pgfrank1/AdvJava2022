@@ -79,8 +79,10 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
                 DateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd "
                         + "HH:mm:ss z yyyy");
                 // Outputs all of the file information required
-                fileOutput.println("Application: Text File Information\nAuthor:"
-                        + " Patrick Frank\nAuthor email: pgfrank@madisoncollege"
+                fileOutput.println("Application: " + properties
+                        .getProperty("application.name") + "\nAuthor:"
+                        + properties.getProperty("author") +"\nAuthor email: "
+                        + properties.getProperty("author.email.address")
                         + ".edu\nFile: " + fileInformation.getAbsolutePath() 
                         + "\nDate of analysis: " + currentDate + "\nLast "
                         + "Modified: " + simpleDateFormat.format(fileInformation

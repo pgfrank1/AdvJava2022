@@ -2,6 +2,7 @@ package java112.analyzer;
 
 import java.io.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This class counts the number of times each unique token appears within a 
@@ -25,7 +26,7 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
      * Instantiates the distinctTokenCounts variable
      */
     public DistinctTokenCountsAnalyzer() {
-        distinctTokenCounts = new HashMap<>();
+        distinctTokenCounts = new TreeMap<>();
     }
 
     /**
@@ -74,7 +75,8 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(properties.getProperty("output.directory")
                         + properties.getProperty("output.file.distinct.counts"))))) {
-                    for (Map.Entry<String,Integer> keyValuePair : this.distinctTokenCounts.entrySet()) {
+                    for (Entry<String, Integer> keyValuePair :
+                            this.distinctTokenCounts.entrySet()) {
                         /**
                          * Prints each token to the output file
                          */
