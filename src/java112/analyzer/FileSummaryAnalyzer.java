@@ -80,10 +80,10 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
                         + "HH:mm:ss z yyyy");
                 // Outputs all of the file information required
                 fileOutput.println("Application: " + properties
-                        .getProperty("application.name") + "\nAuthor:"
+                        .getProperty("application.name") + "\nAuthor: "
                         + properties.getProperty("author") +"\nAuthor email: "
                         + properties.getProperty("author.email.address")
-                        + ".edu\nFile: " + fileInformation.getAbsolutePath() 
+                        + "\nFile: " + fileInformation.getAbsolutePath() 
                         + "\nDate of analysis: " + currentDate + "\nLast "
                         + "Modified: " + simpleDateFormat.format(fileInformation
                                 .lastModified()) + "\nFile Size: "

@@ -89,9 +89,10 @@ public class LargestTokensAnalyzer implements TokenAnalyzer{
                         fileOutput.println(longUniqueTokens);
                     }
         } catch (IOException ioException) {
-            ioException.printStackTrace();
             System.out.println("There was an error outputting the file.");
+            ioException.printStackTrace();
         } catch (Exception exception) {
+            //TODO:
             exception.printStackTrace();
         }
     }
