@@ -28,7 +28,7 @@ public class TrivialServlet extends HttpServlet {
             throws ServletException, IOException {
                 response.setContentType("text/html");
                 // set the response type before sending data
-                PrintWriter  out  = response.getWriter();
+                PrintWriter out = response.getWriter();
                 out.print("<HTML>");
                 out.print("<HEAD><TITLE>TrivialServlet Output</TITLE></HEAD>");
                 out.print("<BODY>");
