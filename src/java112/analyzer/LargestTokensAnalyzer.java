@@ -3,44 +3,27 @@ package java112.analyzer;
 import java.io.*;
 import java.util.*;
 
-/**
- * This class looks at the input txt file and analyzes each unique token within
- * the file. It then outputs distinct_tokens.txt file of all words on their own
- * line.
- * 
- * @author pgfrank
- * @since 11.0
- * @version 1.1
- */
-public class DistinctTokensAnalyzer implements TokenAnalyzer {
-    /**
-     * Stores every unique token from the user entered file.
-     */
-    private Set<String> distinctTokens;
+public class LargestTokensAnalyzer implements TokenAnalyzer{
 
     private Properties properties;
+    private Set<String> largestTokens;
+    private int minimumTokenLength;
 
-    /**
-     * This constructor initializes the distinctTokens array
-     * @param properties
-     */
-    public DistinctTokensAnalyzer() {
-        distinctTokens = new TreeSet<>();
+    public LargestTokensAnalyzer() {
+        largestTokens = new TreeSet<>();
     }
 
-    public DistinctTokensAnalyzer(Properties properties) {
+    public LargestTokensAnalyzer(Properties properties) {
         this();
         this.properties = properties;
+        minimumTokenLength = Integer.parseInt(properties
+                .getProperty("largest.words.minimum.length"));
     }
 
-    /**
-     * This method returns the value of distinctTokens
-     * @return distinctTokens Set for unique words
-     */
-    public Set<String> getDistinctTokens() {
-        return distinctTokens;
+    public Set<String> getLargestTokens() {
+        return largestTokens;
     }
-    
+
     /**
      * This method recieves each line of the user txt file and adds each
      * unique word to distinctTokens
@@ -49,9 +32,12 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      */
     public void processToken(String token) {
         // Adds a new unique word to the distinctTokens variable
-        distinctTokens.add(token);
+        if (token.length() >= minimumTokenLength) {
+            largestTokens.add(token);
+
+        }
     }
-    
+
     /**
      * This method creates a print writer object to output each unique token found
      * in the file path specified.
@@ -60,18 +46,18 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * @param outputFilePath path the unique tokens file with be saved to
      *  
      */
-    public void generateOutputFile(String inputFilePath, String outputFilePath) {
+    public void generateOutputFile(String inputFilePath) {
         /**
          * Attempt to create a file at the specifed output path
          */
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(properties.getProperty("output.directory")
-                        + properties.getProperty("output.file.distinct"))))) {
-                    for (String uniqueTokens : distinctTokens) {
+                        + properties.getProperty("output.file.largest.words"))))) {
+                    for (String longUniqueTokens : largestTokens) {
                         /**
                          * Prints each token to the output file
                          */
-                        fileOutput.println(uniqueTokens);
+                        fileOutput.println(longUniqueTokens);
                     }
         } catch (IOException ioException) {
             ioException.printStackTrace();

@@ -29,6 +29,7 @@ public class FileAnalysis implements PropertiesLoader{
     public FileAnalysis() {
         //summaryAnalyzer = new FileSummaryAnalyzer();
         //distinctAnalyzer = new DistinctTokensAnalyzer();
+        analyzers = new ArrayList<TokenAnalyzer>();
     }
 
     /**
@@ -42,7 +43,7 @@ public class FileAnalysis implements PropertiesLoader{
         if (testForTwoArguments(arguments)) {
             createAnalyzerClasses(loadProperties(arguments[1]));
             openInputFile(arguments[0]);
-            writeOutputFiles(loadProperties(arguments[1]));
+            writeOutputFiles(arguments[0]);
         } else {
             System.out.println("You have not entered the correct amount of"
                     + " arguments. Please only enter 1 argument.");
@@ -52,8 +53,21 @@ public class FileAnalysis implements PropertiesLoader{
     public void createAnalyzerClasses(Properties properties) {
         analyzers.add(new FileSummaryAnalyzer(properties));
         analyzers.add(new DistinctTokensAnalyzer(properties));
+        analyzers.add(new LargestTokensAnalyzer(properties));
+        analyzers.add(new DistinctTokenCountsAnalyzer(properties));
+        //analyzers.add(new LexicalDensityAnalyzer(properties));
+    }
+    
+    public void createAnalyzerClasses(Properties properties) {
+        analyzers.add(new FileSummaryAnalyzer(properties));
+        analyzers.add(new DistinctTokensAnalyzer(properties));
+<<<<<<< HEAD
         //analyzers.add(new LargestTokensAnalyzer(properties));
         //analyzers.add(new DistinctTokenCountsAnalyzer(properties));
+=======
+        analyzers.add(new LargestTokensAnalyzer(properties));
+        analyzers.add(new DistinctTokenCountsAnalyzer(properties));
+>>>>>>> 4e7a7d546d7b9ee9735ca0e98ff16ef745823de3
         //analyzers.add(new LexicalDensityAnalyzer(properties));
     }
     
@@ -134,8 +148,10 @@ public class FileAnalysis implements PropertiesLoader{
             // If the length of the current token is more than 0, process
             // the token
             if (splitTokens.length() > 0) {
-                distinctAnalyzer.processToken(splitTokens);
-                summaryAnalyzer.processToken(splitTokens);
+                analyzers.get(0).processToken(splitTokens);
+                analyzers.get(1).processToken(splitTokens);
+                analyzers.get(2).processToken(splitTokens);
+                analyzers.get(3).processToken(splitTokens);
             }
         }
     }
@@ -146,14 +162,18 @@ public class FileAnalysis implements PropertiesLoader{
      * 
      * @param userInputFile user entered input file
      */
-    public void writeOutputFiles(Properties properties) {
+    public void writeOutputFiles(String userInputFile) {
 
-        /*distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+        analyzers.get(0).generateOutputFile(userInputFile);
+        analyzers.get(1).generateOutputFile(userInputFile);
+        analyzers.get(2).generateOutputFile(userInputFile);
+        analyzers.get(3).generateOutputFile(userInputFile);
+        //analyzers.get(4).generateOutputFile(userInputFile);
+
+        /* distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
                 + "distinct_tokens.txt");
         summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
-                + "summary.txt");
-        */
+                + "summary.txt");*/
+        
     }
-
-
 }
