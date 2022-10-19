@@ -24,7 +24,7 @@
 		<div class="box">
 		<ul>
 		<li><a href="/java112/project2FirstServlet">First112Servlet</a></li>
-		<li><a href="#">All starts here</a></li>
+		<li><a href="/java112/project2Properties">Properties Servlet</a></li>
 		<li><a href="#">Whatever</a></li>
 		<li><a href="#">Simple Build</a></li>
 		<li><a href="#">Testing</a></li>

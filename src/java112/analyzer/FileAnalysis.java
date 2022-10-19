@@ -20,6 +20,9 @@ public class FileAnalysis implements PropertiesLoader{
      */
     static final int COMMAND_ARGS = 2;
 
+    /**
+     * Holds each of the analyzer classes
+     */
     private List<TokenAnalyzer> analyzers;
 
     /**
@@ -50,6 +53,11 @@ public class FileAnalysis implements PropertiesLoader{
         }
     }
 
+    /**
+     * This method adds each analyzer class to the analyzers List
+     * 
+     * @param properties the key value pairs from the properties file
+     */
     public void createAnalyzerClasses(Properties properties) {
         analyzers.add(new FileSummaryAnalyzer(properties));
         analyzers.add(new DistinctTokensAnalyzer(properties));

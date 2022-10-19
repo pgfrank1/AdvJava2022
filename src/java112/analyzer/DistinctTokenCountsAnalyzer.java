@@ -3,26 +3,55 @@ package java112.analyzer;
 import java.io.*;
 import java.util.*;
 
+/**
+ * This class counts the number of times each unique token appears within a 
+ * text file
+ * 
+ * @author pgfrank
+ * @version 1.0
+ * @since 11.0
+ */
 public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
+    /**
+     * Stores the key value pairs from the properties file
+     */
     private Properties properties;
+    /**
+     * Holds the tokens and the count of each token
+     */
     private Map<String,Integer> distinctTokenCounts;
 
+    /**
+     * Instantiates the distinctTokenCounts variable
+     */
     public DistinctTokenCountsAnalyzer() {
         distinctTokenCounts = new HashMap<>();
     }
 
+    /**
+     * Instantiates the properties variable
+     * @param properties property file keys and values
+     */
     public DistinctTokenCountsAnalyzer(Properties properties) {
         this();
         this.properties = properties;
     }
 
+    /**
+     * Sends the distinctTokenCounts variable to anything that requests it
+     * @return unique tokens and their occurances
+     */
     public Map<String,Integer> getDistinctTokenCounts() {
         return distinctTokenCounts;
     }
 
-    @Override
+    /**
+     * This method recieves the tokens from the user entered file and sees if
+     * distinctTokenCounts does or doesn't have the word
+     * 
+     * @param token unique token from the user entered file
+     */
     public void processToken(String token) {
-        // TODO Auto-generated method stub
         if (distinctTokenCounts.containsKey(token)) {
             distinctTokenCounts.replace(token, distinctTokenCounts.get(token)
                     , distinctTokenCounts.get(token) + 1);
@@ -32,7 +61,12 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         
     }
 
-    @Override
+    /**
+     * This method generates the output file, putting the unique token and its
+     * count on each line
+     * 
+     * @param inputFilePath user entered file location and name
+     */
     public void generateOutputFile(String inputFilePath) {
         /**
          * Attempt to create a file at the specifed output path

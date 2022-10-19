@@ -14,16 +14,28 @@ import java.util.*;
  * @version 1.1
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer{
-    // Counts the total words from the user entered file.
+    /**
+     * Counts the total words from the user entered file.
+     */
     private int totalTokensCount;
-
+    
+    /**
+     * Stores the key value pairs from the properties file
+     */
     private Properties properties;
 
-    // Constructor that initializes the totalTokensCount variable.
+    /**
+     * Constructor that initializes the totalTokensCount variable.
+     */
     public FileSummaryAnalyzer() {
         totalTokensCount = 0;
     }
 
+    /**
+     * This constructor initializes the properties variable
+     * 
+     * @param properties the key value pairs from the properties file
+     */
     public FileSummaryAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -52,7 +64,6 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
      * and save the information respectively.
      * 
      * @param inputFilePath user entered input file
-     * @param outputFilePath file summary output path
      */
     public void generateOutputFile(String inputFilePath)
     {
