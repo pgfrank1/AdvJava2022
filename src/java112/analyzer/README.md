@@ -1,15 +1,10 @@
 # The Analyzer Project
 
-This directory will contain the code for the analyer project. 
+This directory will contain the code for the analyer project 2. 
 
 <ul>
     Reflection statement:
-    <li>    Key Learning Points:While working on this project, there were many things that I got to learn. The biggest thing for me was learning how to open, read and close files. It started to make me understand how we can process input and possibly even interact with other external resources and databases.</li>
-    <li>    Key Learning Points:While working on this project, there were many things that I got to learn. The biggest thing for me was learninghow to open, read and close files. It started to make me understand how we can process input and possibly eveninteract with other external resources and databases.</li>
-    <li>Challenges:The biggest challenge for me was trying to format each line of input from the text file and find each distinct token. This was the first thing I wanted to complete as it certainly is the most complicated part of this. I'm not sure if there was a better way to place each word onto its own line, but I required 2 splits to be able to get that to happen. Counting the total tokens was much easier as I already had the code to go through each token, I just needed to count them all.</li>
+    <li>Key Learning Points: The biggest thing for me was learning about the new Maps and Sets and what situation is the best for each. Also making sure to fully read through old code that you're updating.</li>
+    <li>Challenges:The biggest challenge for me was trying to go back into my old code and try to modify it without completely removing methods. I had to reset the project once because I changed too much and even the Project 1 analyzer wasn't working anymore. While I knew that Git is extremely important, I haven't had to recover past work before so I could start fresh and try again.</li>
     <li>Help Recieved: All of the resources I looked at was at the Java class website. All work was entirely my own.</li>
 </ul>
-
-
-
-

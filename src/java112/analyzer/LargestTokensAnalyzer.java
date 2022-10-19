@@ -4,39 +4,38 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class finds any unique token that has a length of 14 characters or more
+ * This class finds any unique token that is at or longer than 14 characters
  * 
  * @author pgfrank
  * @version 1.0
  * @since 11.0
  */
-
 public class LargestTokensAnalyzer implements TokenAnalyzer{
 
     /**
-     * Holds the properties file information
+     * Holds the property file values
      */
     private Properties properties;
     /**
-     * Stores the tokens that are 14 characters long or more
+     * Holds the tokens that are longer than 14 characters
      */
     private Set<String> largestTokens;
     /**
-     * Holds the minimum length for the unique tokens
+     * Holds the min length for the unique tokens
      */
     private int minimumTokenLength;
 
     /**
-     * Initializes the largestTokens set
+     * Instantiates the largestTokens  instance variable
      */
     public LargestTokensAnalyzer() {
         largestTokens = new TreeSet<>();
     }
 
     /**
-     * This constructor initializes minimumTokenLength and properties
+     * Instantiates the properties and minimumTokenLength instance variables
      * 
-     * @param properties the property file information
+     * @param properties property file values
      */
     public LargestTokensAnalyzer(Properties properties) {
         this();
@@ -46,8 +45,10 @@ public class LargestTokensAnalyzer implements TokenAnalyzer{
     }
 
     /**
+     * Returns all tokens that are at least 14 characters long
      * 
-     * @return largestTokens Set
+     * @return largestTokens holds all tokens that are 14 characters long or 
+     * more
      */
     public Set<String> getLargestTokens() {
         return largestTokens;
@@ -88,9 +89,10 @@ public class LargestTokensAnalyzer implements TokenAnalyzer{
                         fileOutput.println(longUniqueTokens);
                     }
         } catch (IOException ioException) {
-            ioException.printStackTrace();
             System.out.println("There was an error outputting the file.");
+            ioException.printStackTrace();
         } catch (Exception exception) {
+            //TODO:
             exception.printStackTrace();
         }
     }

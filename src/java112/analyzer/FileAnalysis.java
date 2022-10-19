@@ -21,12 +21,13 @@ public class FileAnalysis implements PropertiesLoader{
     static final int COMMAND_ARGS = 2;
 
     /**
-     * A list of token analyzers
+     * Holds each of the analyzer classes
      */
     private List<TokenAnalyzer> analyzers;
 
     /**
-     * This constructor instantiates the analyzers instance variable
+     * This constructor instantiates the two analyzer variables, summaryAnalyzer
+     * and distinctAnalyzer
      */
     public FileAnalysis() {
         //summaryAnalyzer = new FileSummaryAnalyzer();
@@ -36,9 +37,8 @@ public class FileAnalysis implements PropertiesLoader{
 
     /**
      * This method recieves the user entered argument and determines if there
-     * was only two arguments passed. If so, send the user's arguments to the
-     * openInputFile, writeOutputFiles, testForTwoArguments and createAnalyzerClasses
-     * methods.
+     * was only one argument passed. If so, send the user's argument to the
+     * openInputFile and writeOutputFiles methods.
      * 
      * @param arguments user entered input file
      */
@@ -54,9 +54,9 @@ public class FileAnalysis implements PropertiesLoader{
     }
 
     /**
-     * This method adds each analyzer class to the analyzers ArrayList
+     * This method adds each analyzer class to the analyzers List
      * 
-     * @param properties the properties file containing output file names and locations
+     * @param properties the key value pairs from the properties file
      */
     public void createAnalyzerClasses(Properties properties) {
         analyzers.add(new FileSummaryAnalyzer(properties));
@@ -133,8 +133,7 @@ public class FileAnalysis implements PropertiesLoader{
 
     /**
      * This method checks to make sure each token has a length more than 0 and
-     * sends the current token to distinctAnalyzer, summaryAnalyzer,
-     * largestTokensAnalyzer and distinctTokenCountsAnalyzer.
+     * sends the current token to distinctAnalyzer and summaryAnalyzer.
      * 
      * @param tokens current line of text from the user entered file now split
      */
@@ -152,8 +151,9 @@ public class FileAnalysis implements PropertiesLoader{
         }
     }
     /**
-     * This method calls upon the generateOutputFiles from all
-     * analyzer classes. It sends the user entered file to the methods.
+     * This method calls upon the generateOutputFiles from both
+     * distinctAnalyzer and summaryAnalyzer classes. It sends the user entered
+     * file and the desired output path to the methods.
      * 
      * @param userInputFile user entered input file
      */
@@ -164,5 +164,11 @@ public class FileAnalysis implements PropertiesLoader{
         analyzers.get(2).generateOutputFile(userInputFile);
         analyzers.get(3).generateOutputFile(userInputFile);
         //analyzers.get(4).generateOutputFile(userInputFile);
+
+        /* distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+                + "distinct_tokens.txt");
+        summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
+                + "summary.txt");*/
+        
     }
 }

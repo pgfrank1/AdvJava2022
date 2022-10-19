@@ -19,19 +19,21 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
     private Set<String> distinctTokens;
 
     /**
-     * Stores the property key value pairs for the analyzer program
+     * Stores the key value pairs from the properties file
      */
     private Properties properties;
 
-
-    // Initializes the distinctTokens variable
+    /**
+     * This constructor initializes the distinctTokens set
+     * 
+     */
     public DistinctTokensAnalyzer() {
         distinctTokens = new TreeSet<>();
     }
 
     /**
      * This constructor initializes the distinctTokens array
-     * @param properties the properties file for the analyzer program
+     * @param properties the key value pair from the properties file
      */
     public DistinctTokensAnalyzer(Properties properties) {
         this();

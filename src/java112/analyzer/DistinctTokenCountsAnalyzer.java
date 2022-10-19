@@ -2,9 +2,10 @@ package java112.analyzer;
 
 import java.io.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
- * This class counts the amount of times each distinct token appears within the
+ * This class counts the number of times each unique token appears within a 
  * text file
  * 
  * @author pgfrank
@@ -13,25 +14,24 @@ import java.util.*;
  */
 public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
     /**
-     * Holds the properties file values
+     * Stores the key value pairs from the properties file
      */
     private Properties properties;
     /**
-     * Holds the unique token and the amount of times it appears
+     * Holds the tokens and the count of each token
      */
     private Map<String,Integer> distinctTokenCounts;
 
     /**
-     * Initializes the distinctTokenCounts Map variable
+     * Instantiates the distinctTokenCounts variable
      */
     public DistinctTokenCountsAnalyzer() {
-        distinctTokenCounts = new HashMap<>();
+        distinctTokenCounts = new TreeMap<>();
     }
 
     /**
-     * Initializes the properties variable
-     * 
-     * @param properties values from the properties file
+     * Instantiates the properties variable
+     * @param properties property file keys and values
      */
     public DistinctTokenCountsAnalyzer(Properties properties) {
         this();
@@ -39,19 +39,18 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
     }
 
     /**
-     * Returns the distinctTokenCounts variable
-     * 
-     * @return distinctTokenCounts HashMap variable
+     * Sends the distinctTokenCounts variable to anything that requests it
+     * @return unique tokens and their occurances
      */
     public Map<String,Integer> getDistinctTokenCounts() {
         return distinctTokenCounts;
     }
 
     /**
-     * This method recives the tokens from the text file and counts each time
-     * the token appears in the file
-     *
-     * @param token the current distinct token from the text file
+     * This method recieves the tokens from the user entered file and sees if
+     * distinctTokenCounts does or doesn't have the word
+     * 
+     * @param token unique token from the user entered file
      */
     public void processToken(String token) {
         if (distinctTokenCounts.containsKey(token)) {
@@ -62,12 +61,12 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         }
         
     }
-    
+
     /**
-     * This method outputs the distinct tokens and how many times they appear
-     * in its own text file
+     * This method generates the output file, putting the unique token and its
+     * count on each line
      * 
-     * @param inputFilePath the user entered text file
+     * @param inputFilePath user entered file location and name
      */
     public void generateOutputFile(String inputFilePath) {
         /**
@@ -76,7 +75,8 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(properties.getProperty("output.directory")
                         + properties.getProperty("output.file.distinct.counts"))))) {
-                    for (Map.Entry<String,Integer> keyValuePair : this.distinctTokenCounts.entrySet()) {
+                    for (Entry<String, Integer> keyValuePair :
+                            this.distinctTokenCounts.entrySet()) {
                         /**
                          * Prints each token to the output file
                          */

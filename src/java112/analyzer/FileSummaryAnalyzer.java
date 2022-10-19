@@ -14,17 +14,28 @@ import java.util.*;
  * @version 1.1
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer{
-    // Counts the total words from the user entered file.
+    /**
+     * Counts the total words from the user entered file.
+     */
     private int totalTokensCount;
-
+    
+    /**
+     * Stores the key value pairs from the properties file
+     */
     private Properties properties;
 
-    // Constructor that initializes the totalTokensCount variable.
+    /**
+     * Constructor that initializes the totalTokensCount variable.
+     */
     public FileSummaryAnalyzer() {
         totalTokensCount = 0;
     }
 
-    // Constructor that initializes the properties variable
+    /**
+     * This constructor initializes the properties variable
+     * 
+     * @param properties the key value pairs from the properties file
+     */
     public FileSummaryAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -68,9 +79,11 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
                 DateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd "
                         + "HH:mm:ss z yyyy");
                 // Outputs all of the file information required
-                fileOutput.println("Application: Text File Information\nAuthor:"
-                        + " Patrick Frank\nAuthor email: pgfrank@madisoncollege"
-                        + ".edu\nFile: " + fileInformation.getAbsolutePath() 
+                fileOutput.println("Application: " + properties
+                        .getProperty("application.name") + "\nAuthor: "
+                        + properties.getProperty("author") +"\nAuthor email: "
+                        + properties.getProperty("author.email.address")
+                        + "\nFile: " + fileInformation.getAbsolutePath() 
                         + "\nDate of analysis: " + currentDate + "\nLast "
                         + "Modified: " + simpleDateFormat.format(fileInformation
                                 .lastModified()) + "\nFile Size: "
