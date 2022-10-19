@@ -5,18 +5,19 @@ import java.util.Date;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-
-@WebServlet(
-    name = "lab5Servlet", 
-    urlPatterns = { "/lab5" }
-)
-
 /**
  * This class displays the number of times the page was accessed, outputs the
  * current date and time, and when the page was first accessed.
  *
  * @author   pgfrank
  */
+
+@WebServlet(
+    name = "lab5Servlet", 
+    urlPatterns = { "/lab5" }
+)
+
+
 public class Lab5Servlet extends HttpServlet {
     /**
      * Stores the amount of times the site has been accessed
@@ -31,7 +32,7 @@ public class Lab5Servlet extends HttpServlet {
      * This method initializes the needed variables upon deploying the
      * application.
      * 
-     * @throws ServletException 
+     * @exception ServletException if there is a Servlet failure
      */
     public void init() throws ServletException {
         log("This is the init method");

@@ -4,12 +4,18 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+/**
+ * This class contains HTML for the First112Servlet page for project 2
+ * 
+ * @author pgfrank
+ * @version 1.0
+ * @since 11.0
+ */
 
 @WebServlet(
     name = "first112Servlet", 
     urlPatterns = { "/project2FirstServlet" }
 )
-
 public class First112Servlet extends HttpServlet{
    
     public void doGet(HttpServletRequest req, HttpServletResponse resp)

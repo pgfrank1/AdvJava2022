@@ -18,16 +18,21 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      */
     private Set<String> distinctTokens;
 
+    /**
+     * Stores the property key value pairs for the analyzer program
+     */
     private Properties properties;
 
-    /**
-     * This constructor initializes the distinctTokens array
-     * @param properties
-     */
+
+    // Initializes the distinctTokens variable
     public DistinctTokensAnalyzer() {
         distinctTokens = new TreeSet<>();
     }
 
+    /**
+     * This constructor initializes the distinctTokens array
+     * @param properties the properties file for the analyzer program
+     */
     public DistinctTokensAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -57,7 +62,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * in the file path specified.
      * 
      * @param inputFilePath user entered input file path
-     * @param outputFilePath path the unique tokens file with be saved to
      *  
      */
     public void generateOutputFile(String inputFilePath) {

@@ -24,6 +24,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
         totalTokensCount = 0;
     }
 
+    // Constructor that initializes the properties variable
     public FileSummaryAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -52,7 +53,6 @@ public class FileSummaryAnalyzer implements TokenAnalyzer{
      * and save the information respectively.
      * 
      * @param inputFilePath user entered input file
-     * @param outputFilePath file summary output path
      */
     public void generateOutputFile(String inputFilePath)
     {

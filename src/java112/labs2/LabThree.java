@@ -34,7 +34,7 @@ public class LabThree {
      * This method recieves the user entered properties file path and outputs
      * the two key value pairs I have made within the properties file.
      * 
-     * @param propertiesFilePath
+     * @param propertiesFilePath properties file location
      */
     public void loadProperties(String propertiesFilePath)  {
         /**
@@ -59,7 +59,7 @@ public class LabThree {
      * Simply calls upon the loadProperties method and sends the user entered
      * properties file path.
      * 
-     * @param args
+     * @param args user entered arguments
      */
     public void run(String args) {
         loadProperties(args);

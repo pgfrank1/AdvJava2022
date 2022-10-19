@@ -3,16 +3,41 @@ package java112.analyzer;
 import java.io.*;
 import java.util.*;
 
+/**
+ * This class finds any unique token that has a length of 14 characters or more
+ * 
+ * @author pgfrank
+ * @version 1.0
+ * @since 11.0
+ */
+
 public class LargestTokensAnalyzer implements TokenAnalyzer{
 
+    /**
+     * Holds the properties file information
+     */
     private Properties properties;
+    /**
+     * Stores the tokens that are 14 characters long or more
+     */
     private Set<String> largestTokens;
+    /**
+     * Holds the minimum length for the unique tokens
+     */
     private int minimumTokenLength;
 
+    /**
+     * Initializes the largestTokens set
+     */
     public LargestTokensAnalyzer() {
         largestTokens = new TreeSet<>();
     }
 
+    /**
+     * This constructor initializes minimumTokenLength and properties
+     * 
+     * @param properties the property file information
+     */
     public LargestTokensAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -20,6 +45,10 @@ public class LargestTokensAnalyzer implements TokenAnalyzer{
                 .getProperty("largest.words.minimum.length"));
     }
 
+    /**
+     * 
+     * @return largestTokens Set
+     */
     public Set<String> getLargestTokens() {
         return largestTokens;
     }
@@ -43,7 +72,6 @@ public class LargestTokensAnalyzer implements TokenAnalyzer{
      * in the file path specified.
      * 
      * @param inputFilePath user entered input file path
-     * @param outputFilePath path the unique tokens file with be saved to
      *  
      */
     public void generateOutputFile(String inputFilePath) {

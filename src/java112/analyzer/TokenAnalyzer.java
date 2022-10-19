@@ -20,7 +20,6 @@ public interface TokenAnalyzer {
      * This method is for creating output from the user entered input file.
      * 
      * @param inputFilePath the user entered file path and name.
-     * @param outputFilePath places output files within the ./output/ folder.
      */
     void generateOutputFile(String inputFilePath);
 }
