@@ -84,9 +84,10 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
                                 + keyValuePair.getValue());
                     }
         } catch (IOException ioException) {
-            ioException.printStackTrace();
             System.out.println("There was an error outputting the file.");
+            ioException.printStackTrace();
         } catch (Exception exception) {
+            System.out.println("There was an error...");
             exception.printStackTrace();
         }
     }

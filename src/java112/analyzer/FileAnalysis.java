@@ -30,8 +30,6 @@ public class FileAnalysis implements PropertiesLoader{
      * and distinctAnalyzer
      */
     public FileAnalysis() {
-        //summaryAnalyzer = new FileSummaryAnalyzer();
-        //distinctAnalyzer = new DistinctTokensAnalyzer();
         analyzers = new ArrayList<TokenAnalyzer>();
     }
 
@@ -143,32 +141,32 @@ public class FileAnalysis implements PropertiesLoader{
             // If the length of the current token is more than 0, process
             // the token
             if (splitTokens.length() > 0) {
-                analyzers.get(0).processToken(splitTokens);
-                analyzers.get(1).processToken(splitTokens);
-                analyzers.get(2).processToken(splitTokens);
-                analyzers.get(3).processToken(splitTokens);
+                callEachAnalyzerProcessToken(splitTokens);
             }
         }
     }
+
     /**
-     * This method calls upon the generateOutputFiles from both
-     * distinctAnalyzer and summaryAnalyzer classes. It sends the user entered
-     * file and the desired output path to the methods.
+     * This method loops through each analyzer object within the analyzers variable
+     * and sends the current token for processing
+     * 
+     * @param splitTokens the current token for processing
+     */
+    public void callEachAnalyzerProcessToken(String splitTokens) {
+        for (TokenAnalyzer analyzer : analyzers) {
+            analyzer.processToken(splitTokens);
+        }
+    }
+
+    /**
+     * This method calls upon the generateOutputFiles from each analyzer class.
+     * It sends the user entered file to the methods.
      * 
      * @param userInputFile user entered input file
      */
     public void writeOutputFiles(String userInputFile) {
-
-        analyzers.get(0).generateOutputFile(userInputFile);
-        analyzers.get(1).generateOutputFile(userInputFile);
-        analyzers.get(2).generateOutputFile(userInputFile);
-        analyzers.get(3).generateOutputFile(userInputFile);
-        //analyzers.get(4).generateOutputFile(userInputFile);
-
-        /* distinctAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
-                + "distinct_tokens.txt");
-        summaryAnalyzer.generateOutputFile(userInputFile, OUTPUT_PATH
-                + "summary.txt");*/
-        
+        for (TokenAnalyzer analyzer : analyzers) {
+            analyzer.generateOutputFile(userInputFile);
+        }
     }
 }

@@ -80,9 +80,10 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
                         fileOutput.println(uniqueTokens);
                     }
         } catch (IOException ioException) {
-            ioException.printStackTrace();
             System.out.println("There was an error outputting the file.");
+            ioException.printStackTrace();
         } catch (Exception exception) {
+            System.out.println("There was an error...");
             exception.printStackTrace();
         }
     }

@@ -19,6 +19,7 @@ public class Driver {
     public static void main(String[] args) {
         // Create an instance of the FileAnalysis class.
         FileAnalysis runLauncher = new FileAnalysis();
+        
         // Calls upon the analyze function and starts generating information
         // about the specified file. 
         runLauncher.analyze(args);
