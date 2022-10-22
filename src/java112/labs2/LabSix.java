@@ -1,8 +1,6 @@
 package java112.labs2;
 
-import java.util.*;
 import java112.utilities.PropertiesLoader;
-import java.io.*;
 
 /**
  * This class opens a properties file and reads off the properties within.
