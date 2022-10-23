@@ -2,24 +2,15 @@
 
 #### What were your AHA!! moments while completing this project?
 
-Replace this text with your thoughts.
+It showed me how useful key value pairs are. I can already see the use when we
+start interacting with databases.
 
 #### What were your biggest challenges completing this project?
 
-Replace this text with your thoughts.
+Going back through our old code and trying to remember how each class links up.
+It definitely made me see how important documentation is as I would have taken
+much longer without it.
 
 #### What additional resources did you use or what help did you receive to complete your work? 
 
-Share your resources here. Example: "When completing this project, I used this [stackoverflow article](https://stackoverflow.com/questions/28177370/how-to-format-localdate-to-string), to format the date.   
-
-I also got stuck with a corrupt commit error message: 
-			
-			error: inflate: data stream error (incorrect header check)
-			error: corrupt loose object '5cdeb9c3a1fe164cb4d2779d1e0d9d9f4ef18c6a'
-			fatal: loose object 5cdeb9c3a1fe164cb4d2779d1e0d9d9f4ef18c6a (stored in .git/objects/5c/deb9c3a1fe164cb4d2779d1e0d9d9f4ef18c6a) 
-			
-Curtis, the IT Guide, helped me resolve it by using [this article](https://stackoverflow.com/questions/12571557/fixing-a-corrupt-loose-object-as-a-commit-in-git).
-
-If you didn't use any additional resources or receive any outside help, then indicate that as such. Example: "I did not use any outside resources on any parts of this submission - the work is entirely my own."
-
-Replace this text and the examples above with your own references. 
+All work is entirely my own.

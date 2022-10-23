@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>Patrick Frank Lab 1</h1>
+    <a href="/java112">Back to home</a>
+    <br>
     <img style="width: 50%; height: 50%" src="./images/code.png">
     <%= new java.util.Date() %>
     <h2>Now testing a change to this JSP page</h2>
