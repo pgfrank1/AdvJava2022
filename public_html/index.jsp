@@ -36,6 +36,7 @@
 		<ul>
 		<li><a href="./myFirstJSP.jsp">Lab 1</a></li>
 		<li><a href="./Lab32Servlet">Lab 2</a></li>
+		<li><a href="./Lab33Servlet">Lab 3</a></li>
 		</ul>
 		</div>
 
