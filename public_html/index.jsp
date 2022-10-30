@@ -35,7 +35,7 @@
 		<div class="box">
 		<ul>
 		<li><a href="./myFirstJSP.jsp">Lab 1</a></li>
-		<li><a href="#">February</a></li>
+		<li><a href="./Lab32Servlet">Lab 2</a></li>
 		</ul>
 		</div>
 
