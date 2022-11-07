@@ -17,6 +17,8 @@
             <li><a href="./Lab32Servlet">Lab 2</a></li>
             <li><a href="./Lab33Servlet">Lab 3</a></li>
             <li><a href="./mvc-demo">Lab 4</a></li>
+            <li><a href="./lab36.jsp">Lab 6 A</a></li>
+            <li><a href="./lab36b.jsp">Lab 6 B</a></li>
         </ul>
     </div>
 
