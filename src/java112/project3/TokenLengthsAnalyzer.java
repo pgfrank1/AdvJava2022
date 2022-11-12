@@ -3,15 +3,19 @@ package java112.project3;
 import java.util.*;
 import java.io.*;
 import java112.analyzer.*;
-import java112.utilities.PropertiesLoader;
 
-public class TokenLengthsAnalyzer implements PropertiesLoader, TokenAnalyzer{
+public class TokenLengthsAnalyzer implements TokenAnalyzer{
 
     private Map<Integer, Integer> tokenLengths;
     private Properties properties;
 
     public TokenLengthsAnalyzer() {
-        properties = new Properties(loadProperties("/analyzer.properties"));
+        tokenLengths = new TreeMap<>();
+    }
+
+    public TokenLengthsAnalyzer(Properties properties) {
+        this();
+        this.properties = properties;
     }
 
     public Map<Integer, Integer> getTokenLengths() {
@@ -41,12 +45,15 @@ public class TokenLengthsAnalyzer implements PropertiesLoader, TokenAnalyzer{
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(properties.getProperty("output.directory")
                         + properties.getProperty("output.file.token.lengths"))))) {
-                    for (String longUniqueTokens : largestTokens) {
+                            System.out.println("TESTING");
+                    for (Map.Entry<Integer, Integer> keyValuePair :
+                            this.tokenLengths.entrySet()) {
                         /**
                          * Prints each token to the output file
                          */
-                        fileOutput.println(longUniqueTokens);
-                    }
+                        fileOutput.println(keyValuePair.getKey() + "\t"
+                                + keyValuePair.getValue());
+            }
         } catch (IOException ioException) {
             System.out.println("There was an error outputting the file.");
             ioException.printStackTrace();
