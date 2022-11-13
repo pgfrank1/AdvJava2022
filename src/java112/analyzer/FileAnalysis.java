@@ -63,9 +63,7 @@ public class FileAnalysis implements PropertiesLoader{
         analyzers.add(new DistinctTokensAnalyzer(properties));
         analyzers.add(new LargestTokensAnalyzer(properties));
         analyzers.add(new DistinctTokenCountsAnalyzer(properties));
-        System.out.println("TESTING");
         analyzers.add(new TokenLengthsAnalyzer(properties));
-        System.out.println("TESTING");
         //analyzers.add(new LexicalDensityAnalyzer(properties));
     }
     

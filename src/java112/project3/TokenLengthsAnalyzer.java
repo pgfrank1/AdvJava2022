@@ -6,8 +6,11 @@ import java112.analyzer.*;
 
 public class TokenLengthsAnalyzer implements TokenAnalyzer{
 
+    //private final String STAR = "*";
+
     private Map<Integer, Integer> tokenLengths;
     private Properties properties;
+
 
     public TokenLengthsAnalyzer() {
         tokenLengths = new TreeMap<>();
@@ -25,6 +28,7 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
     @Override
     public void processToken(String token) {
         int tokenLength = token.length();
+
         if (tokenLength == 0) {
             return;
         }
@@ -33,8 +37,6 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
             return;
         }
         tokenLengths.putIfAbsent(tokenLength, 1);
-
-        
     }
 
     @Override
@@ -45,15 +47,13 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
         try(PrintWriter fileOutput = new PrintWriter(new BufferedWriter(
                 new FileWriter(properties.getProperty("output.directory")
                         + properties.getProperty("output.file.token.lengths"))))) {
-                            System.out.println("TESTING");
-                    for (Map.Entry<Integer, Integer> keyValuePair :
-                            this.tokenLengths.entrySet()) {
-                        /**
-                         * Prints each token to the output file
-                         */
-                        fileOutput.println(keyValuePair.getKey() + "\t"
-                                + keyValuePair.getValue());
-            }
+
+                    printTokenLengths(fileOutput);
+
+                    fileOutput.println("");
+
+                    printTokenHistogram(fileOutput);
+
         } catch (IOException ioException) {
             System.out.println("There was an error outputting the file.");
             ioException.printStackTrace();
@@ -62,5 +62,36 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
             exception.printStackTrace();
         }
         
+    }
+
+    public void printTokenLengths(PrintWriter fileOutput) {
+        for (Map.Entry<Integer, Integer> keyValuePair : 
+                this.tokenLengths.entrySet()) {
+        /**
+         * Prints each token to the output file
+         */
+        fileOutput.println(keyValuePair.getKey() + "\t"
+                + keyValuePair.getValue());
+}
+    }
+
+    public void printTokenHistogram(PrintWriter fileOutput) {
+        String star = "*";
+
+        for (Map.Entry<Integer, Integer> keyValuePair :
+                this.tokenLengths.entrySet()) {
+        //int maxMapValue = Collections.max(tokenLengths.values());
+        int amountPerStar = Collections.max(
+                tokenLengths.values()) / 80;
+        int histogramAmount = keyValuePair.getValue() / amountPerStar;
+
+        if (histogramAmount == 0) {
+            histogramAmount = 1;
+        }
+
+        // Used https://www.studytonight.com/java-examples/how-to-multiply-string-in-java to be able to repeat the stars
+        fileOutput.println(keyValuePair.getKey() + "\t"
+                + star.repeat(histogramAmount));
+        }
     }
 }

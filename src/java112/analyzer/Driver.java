@@ -23,7 +23,6 @@ public class Driver {
         // Calls upon the analyze function and starts generating information
         // about the specified file.
 
-        System.out.println("TESTING");
         runLauncher.analyze(args);
     }
 }
