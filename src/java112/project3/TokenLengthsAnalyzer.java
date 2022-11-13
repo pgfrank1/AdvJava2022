@@ -81,8 +81,7 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
         for (Map.Entry<Integer, Integer> keyValuePair :
                 this.tokenLengths.entrySet()) {
         //int maxMapValue = Collections.max(tokenLengths.values());
-        int amountPerStar = Collections.max(
-                tokenLengths.values()) / 80;
+        int amountPerStar = Collections.max(tokenLengths.values()) / 80;
         int histogramAmount = keyValuePair.getValue() / amountPerStar;
 
         if (histogramAmount == 0) {
