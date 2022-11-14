@@ -10,6 +10,17 @@
         </ul>
     </div>
 
+    <h2>Project 3:</h2>
+    <div class="box">
+        <ul>
+            <li><a href="./client-server-properties">HttpRequestData</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#">Whatever</a></li>
+            <li><a href="#">Simple Build</a></li>
+            <li><a href="#">Testing</a></li>
+        </ul>
+    </div>
+
     <h2>Unit 3 Labs:</h2>
     <div class="box">
         <ul>
