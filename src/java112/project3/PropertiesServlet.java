@@ -1,6 +1,6 @@
 package java112.project3;
-import java112.utilities.PropertiesLoader;
 
+import java112.utilities.PropertiesLoader;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +11,7 @@ import java.util.Properties;
 
 @WebServlet(
     name = "project3PropertiesServlet",
-    urlPatterns = {"/project3-properties"}
+    urlPatterns = {"/project-3-properties"}
 )
 
 public class PropertiesServlet  extends HttpServlet implements PropertiesLoader {
@@ -19,8 +19,7 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
 
     @Override
     public void init() throws ServletException {
-        properties = new Properties();
-        loadProperties();
+        properties = new Properties(loadProperties("/project3.properties"));
     }
 
     @Override
@@ -32,5 +31,11 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        req.setAttribute("properties", properties);
+
+        String url = "/project3Properties.jsp";
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(req, resp);
     }
 }

@@ -14,7 +14,7 @@
     <div class="box">
         <ul>
             <li><a href="./client-server-properties">HttpRequestData</a></li>
-            <li><a href="#"></a></li>
+            <li><a href="./project-3-properties">Properties</a></li>
             <li><a href="#">Whatever</a></li>
             <li><a href="#">Simple Build</a></li>
             <li><a href="#">Testing</a></li>
