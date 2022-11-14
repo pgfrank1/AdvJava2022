@@ -14,15 +14,15 @@
         <img src="images/placeholder/technics-q-c-680-280-4.jpg" class="post-img" alt="Bild" />
 
         <ul>
-            <li>${clientServerInfo.requestComputer}</li>
-            <li>${clientServerInfo.requestIPAddress}</li>
-            <li>${clientServerInfo.requestHttpMethod}</li>
-            <li>${clientServerInfo.requestURI}</li>
-            <li>${clientServerInfo.requestURL}</li>
-            <li>${clientServerInfo.requestProtocol}</li>
-            <li>${clientServerInfo.serverName}</li>
-            <li>${clientServerInfo.serverPort}</li>
-            <li>${clientServerInfo.currentLocale}</li>
+            <li>Request Computer: ${clientServerInfo.requestComputer}</li>
+            <li>Request IP Address: ${clientServerInfo.requestIPAddress}</li>
+            <li>Request HTTP Method: ${clientServerInfo.requestHttpMethod}</li>
+            <li>Request URI: ${clientServerInfo.requestURI}</li>
+            <li>Request URL:${clientServerInfo.requestURL}</li>
+            <li>Request Protocol: ${clientServerInfo.requestProtocol}</li>
+            <li>Web Server Name: ${clientServerInfo.serverName}</li>
+            <li>Web Server Port: ${clientServerInfo.serverPort}</li>
+            <li>Web Server Current Locale: ${clientServerInfo.currentLocale}</li>
             <li>${clientServerInfo.queryString}</li>
         </ul>
 

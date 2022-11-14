@@ -6,8 +6,6 @@ import java112.analyzer.*;
 
 public class TokenLengthsAnalyzer implements TokenAnalyzer{
 
-    //private final String STAR = "*";
-
     private Map<Integer, Integer> tokenLengths;
     private Properties properties;
 
@@ -67,11 +65,11 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
     public void printTokenLengths(PrintWriter fileOutput) {
         for (Map.Entry<Integer, Integer> keyValuePair : 
                 this.tokenLengths.entrySet()) {
-        /**
-         * Prints each token to the output file
-         */
-        fileOutput.println(keyValuePair.getKey() + "\t"
-                + keyValuePair.getValue());
+            /**
+             * Prints each token to the output file
+             */
+            fileOutput.println(keyValuePair.getKey() + "\t"
+                    + keyValuePair.getValue());
 }
     }
 
@@ -80,17 +78,16 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
 
         for (Map.Entry<Integer, Integer> keyValuePair :
                 this.tokenLengths.entrySet()) {
-        //int maxMapValue = Collections.max(tokenLengths.values());
-        int amountPerStar = Collections.max(tokenLengths.values()) / 80;
-        int histogramAmount = keyValuePair.getValue() / amountPerStar;
+            int amountPerStar = Collections.max(tokenLengths.values()) / 80;
+            int histogramAmount = keyValuePair.getValue() / amountPerStar;
 
-        if (histogramAmount == 0) {
-            histogramAmount = 1;
-        }
+            if (histogramAmount == 0) {
+                histogramAmount = 1;
+            }
 
-        // Used https://www.studytonight.com/java-examples/how-to-multiply-string-in-java to be able to repeat the stars
-        fileOutput.println(keyValuePair.getKey() + "\t"
-                + star.repeat(histogramAmount));
-        }
+            // Used https://www.studytonight.com/java-examples/how-to-multiply-string-in-java to be able to repeat the stars
+            fileOutput.println(keyValuePair.getKey() + "\t"
+                    + star.repeat(histogramAmount));
+            }
     }
 }
