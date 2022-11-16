@@ -46,8 +46,30 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
                         + properties.getProperty("output.file.token.search.locations"))))) {
             for (Map.Entry<String, List<Integer>> entry : foundLocations.entrySet()) {
                 //TODO: Need to format the output correctly, cannot figure out the 80 character limit
-                List entryList = entry.getValue();
-                fileOutput.println(entry.getKey() + " =\n" + entryList + "\n");
+                String[] entryList = entry.getValue().toString().split(", ");
+                String test = "";
+                fileOutput.println(entry.getKey() + " =");
+                if (entryList.length == 0) {
+                    fileOutput.println("[]\n\n");
+                    continue;
+                }
+                //fileOutput.println(entry.getValue());
+                for (String list : entryList) {
+                    //fileOutput.println(list);
+                    if (entryList[entryList.length - 1].equals(list)) {
+                        fileOutput.println(test + list + "\n");
+                        break;
+                    }
+                    if ((test.length() + list.length()) >= 80) {
+                        fileOutput.println(test);
+                        test = list + ", ";
+                        continue;
+                    }
+                    test += list + ", ";
+                }
+
+
+                //fileOutput.println(entry.getKey() + " =\n" + entryList + "\n");
 
             }
         } catch (IOException ioException) {
