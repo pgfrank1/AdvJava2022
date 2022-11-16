@@ -3,7 +3,6 @@ package java112.analyzer;
 import java.io.*;
 import java.util.*;
 
-import java112.project3.TokenLengthsAnalyzer;
 import java112.utilities.PropertiesLoader;
 
 
@@ -64,6 +63,7 @@ public class FileAnalysis implements PropertiesLoader{
         analyzers.add(new LargestTokensAnalyzer(properties));
         analyzers.add(new DistinctTokenCountsAnalyzer(properties));
         analyzers.add(new TokenLengthsAnalyzer(properties));
+        analyzers.add(new TokenLocationSearchAnalyzer(properties));
         //analyzers.add(new LexicalDensityAnalyzer(properties));
     }
     
