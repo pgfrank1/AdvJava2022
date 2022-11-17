@@ -18,12 +18,14 @@
             <li>Request IP Address: ${clientServerInfo.requestIPAddress}</li>
             <li>Request HTTP Method: ${clientServerInfo.requestHttpMethod}</li>
             <li>Request URI: ${clientServerInfo.requestURI}</li>
-            <li>Request URL:${clientServerInfo.requestURL}</li>
+            <li>Request URL: ${clientServerInfo.requestURL}</li>
             <li>Request Protocol: ${clientServerInfo.requestProtocol}</li>
             <li>Web Server Name: ${clientServerInfo.serverName}</li>
             <li>Web Server Port: ${clientServerInfo.serverPort}</li>
             <li>Web Server Current Locale: ${clientServerInfo.currentLocale}</li>
-            <li>${clientServerInfo.queryString}</li>
+            <li>Query String: ${clientServerInfo.queryString}</li>
+            <li>Query Parameter: ${clientServerInfo.queryParameter}</li>
+            <li>Request Header: ${clientServerInfo.requestHeader} </li>
         </ul>
 
     </div>

@@ -14,9 +14,7 @@ import java.util.*;
  * @author pgfrank
  * @version 1.0
  * @since 11.0
- *
- **/
-
+ */
 @WebServlet(
         name = "Lab33Servlet",
         value = "/Lab33Servlet"
@@ -28,8 +26,8 @@ public class Lab33Servlet extends HttpServlet {
      *
      * @param request the user request
      * @param response the server response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException throws ServletException error
+     * @throws IOException throws IOException error
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

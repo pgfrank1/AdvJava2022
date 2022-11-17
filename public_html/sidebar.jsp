@@ -13,7 +13,7 @@
     <h2>Project 3:</h2>
     <div class="box">
         <ul>
-            <li><a href="./client-server-properties">HttpRequestData</a></li>
+            <li><a href="./client-server-properties?queryParameter=example">HttpRequestData</a></li>
             <li><a href="./project-3-properties">Properties</a></li>
             <li><a href="#">Whatever</a></li>
             <li><a href="#">Simple Build</a></li>

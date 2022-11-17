@@ -3,15 +3,28 @@ package java112.analyzer;
 import java.io.*;
 import java.util.*;
 
+/**
+ * The type Token location search analyzer.
+ */
 public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
     private Map<String, List<Integer>> foundLocations;
     private Properties properties;
     private int currentTokenLocation;
 
+    /**
+     * Instantiates the foundLocations TreeMap and currentTokenLocation.
+     */
     public TokenLocationSearchAnalyzer() {
         foundLocations = new TreeMap<String, List<Integer>>();
         currentTokenLocation = 0;
     }
+
+    /**
+     * Instantiates the properties instance variable and calls the function
+     * getSearchTokens()
+     *
+     * @param properties the properties
+     */
     public TokenLocationSearchAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -45,7 +58,6 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
                 new FileWriter(properties.getProperty("output.directory")
                         + properties.getProperty("output.file.token.search.locations"))))) {
             for (Map.Entry<String, List<Integer>> entry : foundLocations.entrySet()) {
-                //TODO: Need to format the output correctly, cannot figure out the 80 character limit
                 String[] entryList = entry.getValue().toString().split(", ");
                 String test = "";
                 fileOutput.println(entry.getKey() + " =");
@@ -61,11 +73,12 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
                         break;
                     }
                     if ((test.length() + list.length()) >= 80) {
-                        fileOutput.println(test);
+                        fileOutput.println(test.trim());
                         test = list + ", ";
                         continue;
+                    } else {
+                        test += list + ", ";
                     }
-                    test += list + ", ";
                 }
 
 
@@ -82,10 +95,18 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
 
     }
 
+    /**
+     * Gets found locations.
+     *
+     * @return the found locations
+     */
     public Map<String, List<Integer>> getFoundLocations() {
         return foundLocations;
     }
 
+    /**
+     * Gets search tokens.
+     */
     public void getSearchTokens() {
         try (
                 InputStream inputStream = this.getClass().getResourceAsStream(

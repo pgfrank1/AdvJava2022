@@ -6,6 +6,16 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * This servlet demonstrates how to use annotations for a url to be able to view
+ * the generated webpage
+ *
+ * @author pgfrank
+ * @version 1.0
+ * @since 11.0
+ *
+ * */
+
 @WebServlet(
         name = "HelloWorldServlet",
         value = "/HelloWorldServlet"
