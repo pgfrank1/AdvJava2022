@@ -65,25 +65,7 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
                     fileOutput.println("[]\n\n");
                     continue;
                 }
-                //fileOutput.println(entry.getValue());
-                for (String list : entryList) {
-                    //fileOutput.println(list);
-                    if (entryList[entryList.length - 1].equals(list)) {
-                        fileOutput.println(test + list + "\n");
-                        break;
-                    }
-                    if ((test.length() + list.length()) >= 80) {
-                        fileOutput.println(test.trim());
-                        test = list + ", ";
-                        continue;
-                    } else {
-                        test += list + ", ";
-                    }
-                }
-
-
-                //fileOutput.println(entry.getKey() + " =\n" + entryList + "\n");
-
+                formatOutputLines(entryList, fileOutput, test);
             }
         } catch (IOException ioException) {
             System.out.println("There was an error outputting the file.");
@@ -105,24 +87,45 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
     }
 
     /**
+     * This method looks through each given word and occurance list, then
+     * outputs the formatted text to the specified output file path
+     *
+     * @param entryList each occurance of the current word
+     * @param fileOutput a PrintWriter object to output information to a text file
+     * @param test holds each occurance of a word until a maximum of 80 characters
+     */
+    public void formatOutputLines(String[] entryList, PrintWriter fileOutput, String test) {
+        for (String list : entryList) {
+            if (entryList[entryList.length - 1].equals(list)) {
+                fileOutput.println(test + list + "\n");
+                break;
+            }
+            if ((test.length() + list.length()) >= 80) {
+                fileOutput.println(test.trim());
+                test = list + ", ";
+                continue;
+            }
+            test += list + ", ";
+        }
+    }
+
+    /**
      * Gets search tokens.
      */
     public void getSearchTokens() {
-        try (
-                InputStream inputStream = this.getClass().getResourceAsStream(
-                            properties.getProperty("classpath.search.tokens"));
-                InputStreamReader inputStreamReader = new InputStreamReader(
-                            inputStream);
-                BufferedReader searchTokensReader = new BufferedReader(
-                            inputStreamReader)) {
-            while (searchTokensReader.ready()){
-                String searchToken = searchTokensReader.readLine();
-                if (searchToken.length() == 0) {
+        try (InputStream inputStream = this.getClass().getResourceAsStream(
+                     properties.getProperty("classpath.search.tokens"));
+             InputStreamReader inputStreamReader = new InputStreamReader(
+                     inputStream);
+             BufferedReader searchTokensReader = new BufferedReader(
+                     inputStreamReader)) {
+             while (searchTokensReader.ready()){
+                 String searchToken = searchTokensReader.readLine();
+                 if (searchToken.length() == 0) {
                     continue;
-                }
-                foundLocations.putIfAbsent(searchToken, new ArrayList<>());
+                 }
+                 foundLocations.putIfAbsent(searchToken, new ArrayList<>());
             }
-            //System.out.println(searchTokens);
         } catch (IOException inputOutputException) {
             inputOutputException.printStackTrace();
         } catch (Exception exception) {
