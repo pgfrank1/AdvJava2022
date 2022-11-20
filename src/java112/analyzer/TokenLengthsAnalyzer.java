@@ -115,29 +115,27 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
     }
 
     /**
-     * Outputs the histogram to the gived text file location.
+     * Outputs the histogram to the given text file location.
      *
      * @param fileOutput the file output
      */
     public void printTokenHistogram(PrintWriter fileOutput) {
         String star = "*";
-        int amountPerStar = Collections.max(tokenLengths.values()) / 75;
 
-        //TODO: tiny files aren't processing correctly
+        float amountPerStar = (float) Collections.max(tokenLengths.values()) / 75;
+
         for (Map.Entry<Integer, Integer> keyValuePair :
                 this.tokenLengths.entrySet()) {
 
-            if (amountPerStar < 1) {
-                amountPerStar = 1;
-            }
-            int histogramAmount = keyValuePair.getValue() / amountPerStar;
+            float histogramAmount = (float) keyValuePair.getValue() / amountPerStar;
 
-            if (histogramAmount == 0) {
-                histogramAmount = 1;
+            if (histogramAmount < 1) {
+                fileOutput.println(keyValuePair.getKey() + "\t" + star);
+                continue;
             }
 
             fileOutput.println(keyValuePair.getKey() + "\t"
-                    + star.repeat(histogramAmount));
+                    + star.repeat(Math.round(histogramAmount)));
             }
     }
 }
