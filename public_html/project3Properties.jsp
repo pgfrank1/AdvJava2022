@@ -13,6 +13,7 @@
         <h2>Lorem Ipsum <span class="post-span">- by Maurice from 09 Feb 2013</span></h2>
         <img src="images/placeholder/technics-q-c-680-280-4.jpg" class="post-img" alt="Bild" />
         <table style="width: 50%;">
+            <!-- TODO change how these properties are accessed req['']-->
             <tbody>
                 <tr>
                     <th>Project 3 Author</th>

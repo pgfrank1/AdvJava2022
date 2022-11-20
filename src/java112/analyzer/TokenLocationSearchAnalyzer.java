@@ -42,8 +42,7 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
         currentTokenLocation++;
         //System.out.println(searchToken + token);
         if (foundLocations.containsKey(token)) {
-            List<Integer> currentTokenPlacements;
-            currentTokenPlacements = foundLocations.get(token);
+            List<Integer> currentTokenPlacements = foundLocations.get(token);
             currentTokenPlacements.add(currentTokenLocation);
             foundLocations.replace(token, currentTokenPlacements);
         }

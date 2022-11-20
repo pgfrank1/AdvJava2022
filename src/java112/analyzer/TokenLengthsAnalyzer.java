@@ -48,19 +48,33 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
     public Map<Integer, Integer> getTokenLengths() {
         return tokenLengths;
     }
+
+    /**
+     * Checks the length of each token, saves that length, and adds 1 if the
+     * length has already been found
+     *
+     * @param token user entered file current line of text
+     */
     public void processToken(String token) {
         int tokenLength = token.length();
 
-        if (tokenLength == 0) {
-            return;
-        }
-        if (tokenLengths.containsKey(tokenLength)) {
+        //if (tokenLength == 0) {
+        //   return;
+        //}
+
+        if (!tokenLengths.containsKey(tokenLength)) {
+            tokenLengths.putIfAbsent(tokenLength, 1);
+
+        } else {
             tokenLengths.replace(tokenLength, tokenLengths.get(tokenLength) + 1);
-            return;
         }
-        tokenLengths.putIfAbsent(tokenLength, 1);
     }
 
+    /**
+     * Outputs the occurrence of each string length when it occurs
+     *
+     * @param inputFilePath the user entered file path and name.
+     */
     public void generateOutputFile(String inputFilePath) {
     /**
      * Attempt to create a file at the specifed output path
@@ -91,8 +105,7 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
      * @param fileOutput the file output
      */
     public void printTokenLengths(PrintWriter fileOutput) {
-        for (Map.Entry<Integer, Integer> keyValuePair : 
-                this.tokenLengths.entrySet()) {
+        for (Map.Entry<Integer, Integer> keyValuePair : this.tokenLengths.entrySet()) {
             /**
              * Prints each token to the output file
              */
@@ -108,10 +121,15 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
      */
     public void printTokenHistogram(PrintWriter fileOutput) {
         String star = "*";
+        int amountPerStar = Collections.max(tokenLengths.values()) / 75;
 
+        //TODO: tiny files aren't processing correctly
         for (Map.Entry<Integer, Integer> keyValuePair :
                 this.tokenLengths.entrySet()) {
-            int amountPerStar = Collections.max(tokenLengths.values()) / 75;
+
+            if (amountPerStar < 1) {
+                amountPerStar = 1;
+            }
             int histogramAmount = keyValuePair.getValue() / amountPerStar;
 
             if (histogramAmount == 0) {
