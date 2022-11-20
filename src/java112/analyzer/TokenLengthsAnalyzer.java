@@ -131,11 +131,10 @@ public class TokenLengthsAnalyzer implements TokenAnalyzer{
 
             if (histogramAmount < 1) {
                 fileOutput.println(keyValuePair.getKey() + "\t" + star);
-                continue;
+            } else {
+                fileOutput.println(keyValuePair.getKey() + "\t"
+                        + star.repeat(Math.round(histogramAmount)));
             }
-
-            fileOutput.println(keyValuePair.getKey() + "\t"
-                    + star.repeat(Math.round(histogramAmount)));
-            }
+        }
     }
 }

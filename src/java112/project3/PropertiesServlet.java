@@ -6,8 +6,8 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Properties;
+import java.io.*;
+import java.util.*;
 
 /**
  * This servlet opens the project3.properties file and adds it to an attribute
@@ -61,11 +61,23 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        req.setAttribute("properties", properties);
+       Map project3Properties = new HashMap<>();
 
-        String url = "/project3Properties.jsp";
+       project3Properties.put("project3Author", properties.getProperty("project.3.author"));
+       project3Properties.put("emailAddress", properties.getProperty("author.email.address"));
+       project3Properties.put("courseTitle", properties.getProperty("course.title"));
+       project3Properties.put("courseMeetingDays", properties.getProperty("course.meeting.days"));
+       project3Properties.put("instructorName", properties.getProperty("instructor.name"));
+       project3Properties.put("descriptionLineOne", properties.getProperty("description.line.one"));
+       project3Properties.put("descriptionLineTwo", properties.getProperty("description.line.two"));
+       project3Properties.put("descriptionLineThree", properties.getProperty("description.line.three"));
+       project3Properties.put("descriptionLineFour", properties.getProperty("description.line.four"));
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(req, resp);
+       req.setAttribute("properties", project3Properties);
+
+       String url = "/project3Properties.jsp";
+
+       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+       dispatcher.forward(req, resp);
     }
 }
