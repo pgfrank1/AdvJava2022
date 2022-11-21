@@ -38,7 +38,7 @@
   <!-- uncomment the line below for project 3 -->
   <property name="project_3" value="present"/>
   <!-- uncomment the line below for project 4 -->
-  <!--<property name="project_4" value="present"/>-->
+  <property name="project_4" value="present"/>
   <property name="lab_tests_src" value="${project_home}/src/java112/tests"/>
 
   <path id="classpath">
