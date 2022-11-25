@@ -16,30 +16,30 @@
             <tbody>
                 <tr>
                     <th style="width: 33%;">Project 3 Author</th>
-                    <td>${properties["project3Author"]}</td>
+                    <td>${project3Author}</td>
                 </tr>
                 <tr>
                     <th>Author Email Address</th>
-                    <td>${properties["emailAddress"]}</td>
+                    <td>${emailAddress}</td>
                 </tr>
                 <tr>
                     <th>Course Title</th>
-                    <td>${properties["courseTitle"]}</td>
+                    <td>${courseTitle}</td>
                 </tr>
                 <tr>
                     <th>Course Meeting Days/Times</th>
-                    <td>${properties["courseMeetingDays"]}</td>
+                    <td>${courseMeetingDays}</td>
                 </tr>
                 <tr>
                     <th>Instructor Name</th>
-                    <td>${properties["instructorName"]}</td>
+                    <td>${instructorName}</td>
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td>${properties["descriptionLineOne"]}
-                        ${properties["descriptionLineTwo"]}
-                        ${properties["descriptionLineThree"]}
-                        ${properties["descriptionLineFour"]}</td>
+                    <td>${descriptionLineOne}
+                        ${descriptionLineTwo}
+                        ${descriptionLineThree}
+                        ${descriptionLineFour}</td>
                 </tr>
             </tbody>
         </table>

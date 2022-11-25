@@ -34,7 +34,7 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
      * */
     @Override
     public void init() throws ServletException {
-        properties = new Properties(loadProperties("/project3.properties"));
+        properties = loadProperties("/project3.properties");
     }
 
     /**
@@ -61,19 +61,17 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-       Map project3Properties = new HashMap<>();
+       req.setAttribute("project3Author", properties.getProperty("project.3.author"));
+       req.setAttribute("emailAddress", properties.getProperty("author.email.address"));
+       req.setAttribute("courseTitle", properties.getProperty("course.title"));
+       req.setAttribute("courseMeetingDays", properties.getProperty("course.meeting.days"));
+       req.setAttribute("instructorName", properties.getProperty("instructor.name"));
+       req.setAttribute("descriptionLineOne", properties.getProperty("description.line.one"));
+       req.setAttribute("descriptionLineTwo", properties.getProperty("description.line.two"));
+       req.setAttribute("descriptionLineThree", properties.getProperty("description.line.three"));
+       req.setAttribute("descriptionLineFour", properties.getProperty("description.line.four"));
 
-       project3Properties.put("project3Author", properties.getProperty("project.3.author"));
-       project3Properties.put("emailAddress", properties.getProperty("author.email.address"));
-       project3Properties.put("courseTitle", properties.getProperty("course.title"));
-       project3Properties.put("courseMeetingDays", properties.getProperty("course.meeting.days"));
-       project3Properties.put("instructorName", properties.getProperty("instructor.name"));
-       project3Properties.put("descriptionLineOne", properties.getProperty("description.line.one"));
-       project3Properties.put("descriptionLineTwo", properties.getProperty("description.line.two"));
-       project3Properties.put("descriptionLineThree", properties.getProperty("description.line.three"));
-       project3Properties.put("descriptionLineFour", properties.getProperty("description.line.four"));
-
-       req.setAttribute("properties", project3Properties);
+       //req.setAttribute("properties", project3Properties);
 
        String url = "/project3Properties.jsp";
 

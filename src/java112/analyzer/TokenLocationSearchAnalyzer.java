@@ -96,7 +96,11 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer {
     public void formatOutputLines(String[] entryList, PrintWriter fileOutput, String test) {
         for (String list : entryList) {
             if (entryList[entryList.length - 1].equals(list)) {
-                fileOutput.println(test + list + "\n");
+                if (test.length() + list.length() > 80) {
+                    fileOutput.println(test + "\n" + list + "\n");
+                } else {
+                    fileOutput.println(test + list + "\n");
+                }
                 break;
             }
             if ((test.length() + list.length()) >= 80) {
