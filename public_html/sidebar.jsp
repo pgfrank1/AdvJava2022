@@ -33,6 +33,14 @@
         </ul>
     </div>
 
+    <h2>Unit 4 Labs:</h2>
+    <div class="box">
+        <ul>
+            <li><a href="./jsp/jstl-lab1.jsp">Lab 2 JSTL</a></li>
+            <li><a href="./JSTLLab1Servlet">Lab 2 JSTL Servlet</a></li>
+        </ul>
+    </div>
+
     <h2>Midterm Checkpoints:</h2>
     <div class="box">
         <ul>
