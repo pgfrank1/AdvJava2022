@@ -7,10 +7,10 @@ public class JDBCInsertEmployee {
     public static void main(String[] args) {
         JDBCInsertEmployee run = new JDBCInsertEmployee();
 
-        run.runInsert();
+        run.runInsert(args);
     }
 
-    public void runInsert() {
+    public void runInsert(String[] args) {
 
         Connection connection = null;
         Statement statement = null;
@@ -25,7 +25,8 @@ public class JDBCInsertEmployee {
             statement = connection.createStatement();
 
 
-            String queryString = "INSERT INTO employees VALUES (null, 'Patrick', 'Frank', '123-45-6789', 'Admin', '200', '123-4567')";
+            String queryString = "INSERT INTO employees (emp_id, first_name, last_name, ssn, dept, room, phone) VALUES (null, '" + args[0] + "', '" + args[1] + "', '"
+                    + args[2] + "', '" + args[3] + "', '" + args[4] + "', '" + args[5] + "')";
 
             System.out.println("Insert string: " + queryString);
 

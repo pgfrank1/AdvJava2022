@@ -8,10 +8,10 @@ public class JDBCPreparedStatement {
     public static void main(String[] args) {
         JDBCPreparedStatement run = new JDBCPreparedStatement();
 
-        run.runPreparedStatement();
+        run.runPreparedStatement(args);
     }
 
-    public void runPreparedStatement() {
+    public void runPreparedStatement(String[] args) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -25,12 +25,12 @@ public class JDBCPreparedStatement {
 
             preparedStatement = connection.prepareStatement("INSERT INTO employees VALUES (null, ?, ?, ?, ?, ?, ?)");
 
-            preparedStatement.setString(1, "Stephanie");
-            preparedStatement.setString(2, "Frank");
-            preparedStatement.setString(3, "987-65-4321");
-            preparedStatement.setString(4, "HR");
-            preparedStatement.setString(5, "300");
-            preparedStatement.setString(6, "987-6543");
+            preparedStatement.setString(1, args[0]);
+            preparedStatement.setString(2, args[1]);
+            preparedStatement.setString(3, args[2]);
+            preparedStatement.setString(4, args[3]);
+            preparedStatement.setString(5, args[4]);
+            preparedStatement.setString(6, args[5]);
 
             preparedStatement.executeUpdate();
 
