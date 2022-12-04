@@ -2,14 +2,17 @@ package java112.project4;
   
 import java.io.*;
 import java.sql.*;
-  
+
 /**
+ * The type Jdbc select employees.
  *
- *@author     Eric Knapp
- *
+ * @author Eric Knapp
  */
 public class JDBCSelectEmployees {
-  
+
+    /**
+     * Run sample.
+     */
     public void runSample() {
   
         Connection connection = null;
@@ -84,14 +87,12 @@ public class JDBCSelectEmployees {
             }
         }
     }
-  
+
     /**
-     *  The main program for the JDBCSelectWhereExample class
+     * The main program for the JDBCSelectWhereExample class
      *
-     *@param  args  The command line arguments
-     *
-     *@since
-     *
+     * @param args The command line arguments
+     * @since
      */
     public static void main(String[] args) {
   

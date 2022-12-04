@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Jstl lab 1 servlet.
+ */
 @WebServlet(name = "JSTLLab1Servlet", value = "/JSTLLab1Servlet")
 
 public class JSTLLab1Servlet extends HttpServlet {

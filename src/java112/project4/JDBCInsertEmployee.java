@@ -2,14 +2,33 @@ package java112.project4;
 
 import java.sql.*;
 
+/**
+ * This class attempts to insert employee data into our database
+ *
+ * @author pgfrank
+ * @version 1.0
+ * @since 11.0
+ *
+ */
 public class JDBCInsertEmployee {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the user's input arguments
+     */
     public static void main(String[] args) {
         JDBCInsertEmployee run = new JDBCInsertEmployee();
 
         run.runInsert(args);
     }
 
+    /**
+     * This method attempts to connect to the database and input the user entered
+     * data from the terminal
+     *
+     * @param args the user entered args
+     */
     public void runInsert(String[] args) {
 
         Connection connection = null;

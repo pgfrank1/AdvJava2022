@@ -1,16 +1,35 @@
 package java112.project4;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 
+/**
+ * This class shows how to create a prepared SQL statement using the entered
+ * arguments from the user
+ *
+ * @author pgfrank
+ * @version 1.0
+ * @since 11.0
+ *
+ */
 public class JDBCPreparedStatement {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the user input arguments
+     */
     public static void main(String[] args) {
         JDBCPreparedStatement run = new JDBCPreparedStatement();
 
         run.runPreparedStatement(args);
     }
 
+    /**
+     * Attempts to connect to the database, create a prepared statement from the
+     * user entered arguments, and add them to the specified table
+     *
+     * @param args the user input args
+     */
     public void runPreparedStatement(String[] args) {
 
         Connection connection = null;
@@ -35,11 +54,14 @@ public class JDBCPreparedStatement {
             preparedStatement.executeUpdate();
 
         } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("Class with specified name was not found");
             classNotFoundException.printStackTrace();
         } catch (SQLException sqlException) {
+            System.out.println("There was an SQL error");
             sqlException.printStackTrace();
         } catch (Exception exception) {
             System.err.println("General Error");
+            exception.printStackTrace();
         }
 
     }

@@ -38,6 +38,7 @@
         <ul>
             <li><a href="./jsp/jstl-lab1.jsp">Lab 2 JSTL</a></li>
             <li><a href="./JSTLLab1Servlet">Lab 2 JSTL Servlet</a></li>
+            <li><a href="./lab41.jsp">Lab 4-3 HTML Forms</a></li>
         </ul>
     </div>
 

@@ -16,30 +16,32 @@
             <tbody>
                 <tr>
                     <th style="width: 33%;">Project 3 Author</th>
-                    <td>${project3Author}</td>
+                    <td>${properties.get("project3.author")}</td>
                 </tr>
                 <tr>
                     <th>Author Email Address</th>
-                    <td>${emailAddress}</td>
+                    <td>${properties.get("author.email.address")}</td>
                 </tr>
                 <tr>
                     <th>Course Title</th>
-                    <td>${courseTitle}</td>
+                    <td>${properties.get("course.title")}</td>
                 </tr>
                 <tr>
                     <th>Course Meeting Days/Times</th>
-                    <td>${courseMeetingDays}</td>
+                    <td>${properties.get("course.meeting.days")}</td>
                 </tr>
                 <tr>
                     <th>Instructor Name</th>
-                    <td>${instructorName}</td>
+                    <td>${properties.get("instructor.name")}</td>
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td>${descriptionLineOne}
-                        ${descriptionLineTwo}
-                        ${descriptionLineThree}
-                        ${descriptionLineFour}</td>
+                    <td>
+                        ${properties.get("description.line.one")}
+                        ${properties.get("description.line.two")}
+                        ${properties.get("description.line.three")}
+                        ${properties.get("description.line.four")}
+                    </td>
                 </tr>
             </tbody>
         </table>

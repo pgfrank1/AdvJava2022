@@ -38,17 +38,6 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
     }
 
     /**
-     * Returns the properties content from the specified properties file path
-     *
-     * @param propertiesFilePath a path to a file on the java classpath list
-     * @return properties within the specified properties file
-     */
-    @Override
-    public Properties loadProperties(String propertiesFilePath) {
-        return PropertiesLoader.super.loadProperties(propertiesFilePath);
-    }
-
-    /**
      * This method recieves the client request, adds the properties attribute
      * to the request, then forwards the client to the specified JSP
      *
@@ -61,17 +50,7 @@ public class PropertiesServlet  extends HttpServlet implements PropertiesLoader 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-       req.setAttribute("project3Author", properties.getProperty("project.3.author"));
-       req.setAttribute("emailAddress", properties.getProperty("author.email.address"));
-       req.setAttribute("courseTitle", properties.getProperty("course.title"));
-       req.setAttribute("courseMeetingDays", properties.getProperty("course.meeting.days"));
-       req.setAttribute("instructorName", properties.getProperty("instructor.name"));
-       req.setAttribute("descriptionLineOne", properties.getProperty("description.line.one"));
-       req.setAttribute("descriptionLineTwo", properties.getProperty("description.line.two"));
-       req.setAttribute("descriptionLineThree", properties.getProperty("description.line.three"));
-       req.setAttribute("descriptionLineFour", properties.getProperty("description.line.four"));
-
-       //req.setAttribute("properties", project3Properties);
+       req.setAttribute("properties", properties);
 
        String url = "/project3Properties.jsp";
 
