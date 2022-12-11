@@ -1,19 +1,21 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 
-<%@include file="head.jsp"%>
+<c:import url="head.jsp" />
 
 <body>
 <div id="wrap">
 
-    <%@include file="menu.jsp"%>
+    <c:import url="menu.jsp" />
 
-    <%@include file="sidebar.jsp"%>
+    <c:import url="sidebar.jsp" />
 
     <div id="content">
         <p>Session Count: ${project4SessionCounter}</p>
     </div>
 
-    <%@include file="footer.jsp"%>
+    <c:import url="footer.jsp" />
 
     </div>
 </body>
