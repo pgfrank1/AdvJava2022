@@ -34,3 +34,4 @@ hs_err_pid*
 /.idea/sqldialects.xml
 /.idea/uiDesigner.xml
 /.idea/vcs.xml
+/.idea/sonarlint/issuestore/index.pb
