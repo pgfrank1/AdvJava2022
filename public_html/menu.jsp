@@ -5,5 +5,5 @@
         <a href="#" title="About Us">About Us</a>
         <a href="#" title="Contact">Contact</a>
     </div>
-    <h1><a href="#">Patrick Frank Homepage</a></h1>
+    <h1><a href="./">Patrick Frank Homepage</a></h1>
 </div>
