@@ -18,3 +18,19 @@ lib/*.ear
 .DS_Store
 
 hs_err_pid*
+/.idea/.gitignore
+/.idea/libraries/analyzer.xml
+/.idea/ant.xml
+/.idea/libraries/apache_taglibs_standard_jstlel.xml
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/dataSources.xml
+/.idea/git_toolbox_prj.xml
+/.idea/intellij-javadocs-4.0.1.xml
+/.idea/libraries/jakarta_servlet_jsp_jstl_api.xml
+/.idea/libraries/lib.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/libraries/project_api.xml
+/.idea/sqldialects.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
