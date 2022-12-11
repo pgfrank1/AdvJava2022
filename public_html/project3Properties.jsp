@@ -18,31 +18,31 @@
             <tbody>
                 <tr>
                     <th style="width: 33%;">Project 3 Author</th>
-                    <td>${properties.get("project3.author")}</td>
+                    <td>${properties["project3.author"]}</td>
                 </tr>
                 <tr>
                     <th>Author Email Address</th>
-                    <td>${properties.get("author.email.address")}</td>
+                    <td>${properties["author.email.address"]}</td>
                 </tr>
                 <tr>
                     <th>Course Title</th>
-                    <td>${properties.get("course.title")}</td>
+                    <td>${properties["course.title"]}</td>
                 </tr>
                 <tr>
                     <th>Course Meeting Days/Times</th>
-                    <td>${properties.get("course.meeting.days")}</td>
+                    <td>${properties["course.meeting.days"]}</td>
                 </tr>
                 <tr>
                     <th>Instructor Name</th>
-                    <td>${properties.get("instructor.name")}</td>
+                    <td>${properties["instructor.name"]}</td>
                 </tr>
                 <tr>
                     <th>Description</th>
                     <td>
-                        ${properties.get("description.line.one")}
-                        ${properties.get("description.line.two")}
-                        ${properties.get("description.line.three")}
-                        ${properties.get("description.line.four")}
+                        ${properties["description.line.one"]}
+                        ${properties["description.line.two"]}
+                        ${properties["description.line.three"]}
+                        ${properties["description.line.four"]}
                     </td>
                 </tr>
             </tbody>
