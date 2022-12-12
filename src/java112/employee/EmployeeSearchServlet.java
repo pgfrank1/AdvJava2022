@@ -10,11 +10,11 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        name = "employeeSearchServlet",
-        value = "/employeeSearchServlet"
+        name = "EmployeeSearchServlet",
+        value = "/EmployeeSearchServlet"
 )
 
-public class employeeSearchServlet extends HttpServlet {
+public class EmployeeSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,6 +23,7 @@ public class employeeSearchServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().
                 getRequestDispatcher(url);
+
         dispatcher.forward(request, response);
 
     }

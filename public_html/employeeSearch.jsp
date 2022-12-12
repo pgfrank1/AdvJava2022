@@ -13,7 +13,7 @@
     <c:import url="sidebar.jsp" />
 
     <div id="content">
-        <form method="post" action="java112/employeeSearchServlet">
+        <form method="get" action="./EmployeeSearchResult">
             <h3><label for="search_term">Search Term:</label></h3>
             <input name="search_term" id="search_term" type="text">
             <br><br>

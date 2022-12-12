@@ -14,9 +14,7 @@ public class Search {
     }
 
     public void addFoundEmployee(Employee employee) {
-        if(isEmployeeFound()) {
             results.add(employee);
-        }
     }
 
     public String getSearchType() {

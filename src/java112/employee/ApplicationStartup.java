@@ -21,9 +21,8 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
         Properties properties = loadProperties("/project4.properties");
         EmployeeDirectory employeeDirectory = new EmployeeDirectory(properties);
 
-        ServletContext servletContext = getServletContext();
-        servletContext.setAttribute("project4Properties", properties);
-        servletContext.setAttribute("employeeDirectory", employeeDirectory);
+        getServletContext().setAttribute("project4Properties", properties);
+        getServletContext().setAttribute("employeeDirectory", employeeDirectory);
 
     }
 }

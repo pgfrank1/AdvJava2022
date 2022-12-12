@@ -51,7 +51,8 @@ public class EmployeeDirectory {
 
         Connection connection = databaseConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
                     "INSERT INTO employees VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             preparedStatement.setString(1, employeeId);
@@ -63,7 +64,6 @@ public class EmployeeDirectory {
             preparedStatement.setString(7, phoneNumber);
 
             preparedStatement.executeUpdate();
-            preparedStatement.close();
 
         } catch (Exception e)
         {
@@ -110,7 +110,8 @@ public class EmployeeDirectory {
         Connection connection = databaseConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
                     "SELECT * FROM employees WHERE emp_id = ?");
 
             searchForEmployee(search, preparedStatement);
@@ -130,7 +131,8 @@ public class EmployeeDirectory {
         Connection connection = databaseConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
                     "SELECT * FROM employees WHERE first_name = ?");
 
             searchForEmployee(search, preparedStatement);
@@ -152,7 +154,8 @@ public class EmployeeDirectory {
         Connection connection = databaseConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(
                     "SELECT * FROM employees WHERE last_name = ?");
 
             searchForEmployee(search, preparedStatement);
@@ -176,7 +179,7 @@ public class EmployeeDirectory {
      */
 // Remember this site:
     //https://stackoverflow.com/questions/37763378/how-to-reduce-duplicated-code-of-same-exception-catching-operation-used-in-multi
-    public void handleExceptions (Exception e) {
+    private void handleExceptions (Exception e) {
 
         if (e instanceof SQLException) {
             System.out.println("There was an error with the SQL server");
@@ -192,28 +195,25 @@ public class EmployeeDirectory {
 
     private void searchForEmployee(Search search, PreparedStatement preparedStatement) {
         try {
+            Employee employee = new Employee();
             preparedStatement.setString(1, search.getSearchTerm());
 
-            if (preparedStatement.execute()) {
-                Employee employee = new Employee();
-                search.setEmployeeFound(true);
-                ResultSet resultSet = preparedStatement.getResultSet();
-                preparedStatement.close();
+            search.setEmployeeFound(true);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()) {
-                    employee.setEmployeeId(resultSet.getString("emp_id"));
-                    employee.setFirstName(resultSet.getString("first_name"));
-                    employee.setLastName(resultSet.getString("last_name"));
-                    employee.setSocialSecurityNumber(resultSet.getString("ssn"));
-                    employee.setDepartment(resultSet.getString("dept"));
-                    employee.setRoomNumber(resultSet.getString("room"));
-                    employee.setPhoneNumber(resultSet.getString("phone"));
-                    search.addFoundEmployee(employee);
-                }
-            } else {
-                search.setEmployeeFound(false);
+            while (resultSet.next()) {
+                employee.setEmployeeId(resultSet.getString("emp_id"));
+                employee.setFirstName(resultSet.getString("first_name"));
+                employee.setLastName(resultSet.getString("last_name"));
+                employee.setSocialSecurityNumber(resultSet.getString("ssn"));
+                employee.setDepartment(resultSet.getString("dept"));
+                employee.setRoomNumber(resultSet.getString("room"));
+                employee.setPhoneNumber(resultSet.getString("phone"));
+                search.addFoundEmployee(employee);
             }
-        } catch (Exception e)
+            preparedStatement.close();
+        }
+        catch (Exception e)
         {
             handleExceptions(e);
         }
