@@ -6,11 +6,13 @@ import java.util.List;
 public class Search {
     private String searchType;
     private String searchTerm;
-    private ArrayList<Employee> results;
+    private List<Employee> results;
     private boolean employeeFound;
 
     public Search() {
-        // TODO document why this constructor is empty
+
+        results = new ArrayList<>();
+
     }
 
     public void addFoundEmployee(Employee employee) {
@@ -33,11 +35,11 @@ public class Search {
         this.searchTerm = searchTerm;
     }
 
-    public ArrayList<Employee> getResults() {
+    public List<Employee> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<Employee> results) {
+    public void setResults(List<Employee> results) {
         this.results = results;
     }
 

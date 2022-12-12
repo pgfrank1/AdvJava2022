@@ -122,8 +122,7 @@ public class EmployeeDirectory {
         Connection connection = databaseConnection();
 
         try {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM employees WHERE first_name = ?");
 
             searchForEmployee(search, preparedStatement);
@@ -145,8 +144,7 @@ public class EmployeeDirectory {
         Connection connection = databaseConnection();
 
         try {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM employees WHERE last_name = ?");
 
             searchForEmployee(search, preparedStatement);
@@ -189,25 +187,28 @@ public class EmployeeDirectory {
         try {
             preparedStatement.setString(1, search.getSearchTerm());
             ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Remember:
+            // https://stackoverflow.com/questions/867194/java-resultset-how-to-check-if-there-are-any-results
+            if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
-                    if (resultSet.getString("emp_id") == null)
-                    {
-                        search.setEmployeeFound(false);
-                    } else {
-                        search.setSearchTerm(resultSet.getString("last_name"));
-                        Employee employee = new Employee();
-                        employee.setEmployeeId(resultSet.getString("emp_id"));
-                        employee.setFirstName(resultSet.getString("first_name"));
-                        employee.setLastName(resultSet.getString("last_name"));
-                        employee.setSocialSecurityNumber(resultSet.getString("ssn"));
-                        employee.setDepartment(resultSet.getString("dept"));
-                        employee.setRoomNumber(resultSet.getString("room"));
-                        employee.setPhoneNumber(resultSet.getString("phone"));
-                        search.addFoundEmployee(employee);
-                    }
+                    search.setSearchTerm(resultSet.getString("last_name"));
+                    search.setEmployeeFound(true);
+                    Employee employee = new Employee();
+                    employee.setEmployeeId(resultSet.getString("emp_id"));
+                    employee.setFirstName(resultSet.getString("first_name"));
+                    employee.setLastName(resultSet.getString("last_name"));
+                    employee.setSocialSecurityNumber(resultSet.getString("ssn"));
+                    employee.setDepartment(resultSet.getString("dept"));
+                    employee.setRoomNumber(resultSet.getString("room"));
+                    employee.setPhoneNumber(resultSet.getString("phone"));
+                    search.addFoundEmployee(employee);
                 }
+
+            } else {
+                search.setEmployeeFound(false);
             }
-        catch (Exception e)
+        } catch (Exception e)
         {
             handleExceptions(e);
         }
