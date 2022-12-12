@@ -43,6 +43,14 @@
         </ul>
     </div>
 
+    <h2>Project 4</h2>
+    <div class="box">
+        <ul>
+            <li><a href="./employeeSearchServlet">Employee Search</a></li>
+            <li><a href="./employeeAdd.jsp">Employee Add</a></li>
+        </ul>
+    </div>
+
     <h2>Midterm Checkpoints:</h2>
     <div class="box">
         <ul>
