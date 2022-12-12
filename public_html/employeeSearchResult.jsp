@@ -12,7 +12,7 @@
 
     <c:import url="sidebar.jsp" />
 
-    ${search.isEmployeeFound()}
+    <c:import url="employeeSearchResultTable.jsp" />
 
     <c:import url="footer.jsp" />
 
