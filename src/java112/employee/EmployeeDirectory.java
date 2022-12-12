@@ -20,12 +20,11 @@ public class EmployeeDirectory {
     }
 
     private Connection databaseConnection() {
-
         Connection connection = null;
-
         try {
             Class.forName(properties.getProperty("driver"));
-            connection = DriverManager.getConnection(properties.getProperty("url"));
+            connection = DriverManager.getConnection(properties.getProperty("url"),
+                    properties.getProperty("username"), properties.getProperty("password"));
             System.out.println("Connection made");
         } catch (Exception e)
         {
@@ -37,7 +36,6 @@ public class EmployeeDirectory {
     /**
      * Add employee to database.
      *
-     * @param employeeId           the employee id
      * @param firstName            the first name
      * @param lastName             the last name
      * @param socialSecurityNumber the social security number
@@ -45,23 +43,21 @@ public class EmployeeDirectory {
      * @param roomNumber           the room number
      * @param phoneNumber          the phone number
      */
-    public void addEmployeeToDatabase(String employeeId, String firstName,
+    public void addEmployeeToDatabase(String firstName,
             String lastName, String socialSecurityNumber, String department,
             String roomNumber, String phoneNumber) {
 
         Connection connection = databaseConnection();
         try {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement(
-                    "INSERT INTO employees VALUES (?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement= connection.prepareStatement(
+                    "INSERT INTO employees VALUES (null, ?, ?, ?, ?, ?, ?)");
 
-            preparedStatement.setString(1, employeeId);
-            preparedStatement.setString(2, firstName);
-            preparedStatement.setString(3, lastName);
-            preparedStatement.setString(4, socialSecurityNumber);
-            preparedStatement.setString(5, department);
-            preparedStatement.setString(6, roomNumber);
-            preparedStatement.setString(7, phoneNumber);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, socialSecurityNumber);
+            preparedStatement.setString(4, department);
+            preparedStatement.setString(5, roomNumber);
+            preparedStatement.setString(6, phoneNumber);
 
             preparedStatement.executeUpdate();
 
@@ -89,18 +85,14 @@ public class EmployeeDirectory {
         search.setSearchTerm(searchTerm);
         search.setSearchType(searchType);
 
-        switch (searchType) {
-            case "id":
-                searchByEmployeeId(search);
-                break;
-            case "first_name":
-                searchByEmployeeFirstName(search);
-                break;
-            case "last_name":
-                searchByEmployeeLastName(search);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + searchType);
+        if ("id".equals(searchType)) {
+            searchByEmployeeId(search);
+        } else if ("first_name".equals(searchType)) {
+            searchByEmployeeFirstName(search);
+        } else if ("last_name".equals(searchType)) {
+            searchByEmployeeLastName(search);
+        } else {
+            throw new IllegalStateException("Unexpected value: " + searchType);
         }
         return search;
     }
@@ -110,8 +102,7 @@ public class EmployeeDirectory {
         Connection connection = databaseConnection();
 
         try {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM employees WHERE emp_id = ?");
 
             searchForEmployee(search, preparedStatement);
@@ -194,25 +185,28 @@ public class EmployeeDirectory {
     }
 
     private void searchForEmployee(Search search, PreparedStatement preparedStatement) {
+
         try {
-            Employee employee = new Employee();
             preparedStatement.setString(1, search.getSearchTerm());
-
-            search.setEmployeeFound(true);
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                employee.setEmployeeId(resultSet.getString("emp_id"));
-                employee.setFirstName(resultSet.getString("first_name"));
-                employee.setLastName(resultSet.getString("last_name"));
-                employee.setSocialSecurityNumber(resultSet.getString("ssn"));
-                employee.setDepartment(resultSet.getString("dept"));
-                employee.setRoomNumber(resultSet.getString("room"));
-                employee.setPhoneNumber(resultSet.getString("phone"));
-                search.addFoundEmployee(employee);
+                while (resultSet.next()) {
+                    if (resultSet.getString("emp_id") == null)
+                    {
+                        search.setEmployeeFound(false);
+                    } else {
+                        search.setSearchTerm(resultSet.getString("last_name"));
+                        Employee employee = new Employee();
+                        employee.setEmployeeId(resultSet.getString("emp_id"));
+                        employee.setFirstName(resultSet.getString("first_name"));
+                        employee.setLastName(resultSet.getString("last_name"));
+                        employee.setSocialSecurityNumber(resultSet.getString("ssn"));
+                        employee.setDepartment(resultSet.getString("dept"));
+                        employee.setRoomNumber(resultSet.getString("room"));
+                        employee.setPhoneNumber(resultSet.getString("phone"));
+                        search.addFoundEmployee(employee);
+                    }
+                }
             }
-            preparedStatement.close();
-        }
         catch (Exception e)
         {
             handleExceptions(e);
