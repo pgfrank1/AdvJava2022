@@ -1,4 +1,7 @@
-package java112.employee;
+package java112.project4;
+
+import java112.employee.EmployeeDirectory;
+import java112.employee.Search;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
