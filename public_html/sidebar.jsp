@@ -47,7 +47,7 @@
     <div class="box">
         <ul>
             <li><a href="./EmployeeSearchServlet">Employee Search</a></li>
-            <li><a href="./EmployeeAddServlet">Employee Add</a></li>
+            <li><a href="./EmployeeAddDisplayServlet">Employee Add</a></li>
         </ul>
     </div>
 
