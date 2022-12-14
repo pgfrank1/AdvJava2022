@@ -7,6 +7,15 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
+/**
+ * This Servlet retrieves the form information sent from the employeeAddNewEmployee.jsp
+ * file, checks each input to make sure they meet the database requirements, then
+ * outputs if the employee was successfully added to the database.
+ *
+ * @author pgfrank1
+ * @version 1.0
+ * @since 11.0
+ */
 @WebServlet(
         name = "EmployeeAddActionServlet",
         value = "/EmployeeAddActionServlet"
@@ -14,6 +23,16 @@ import java.io.IOException;
 
 public class EmployeeAddActionServlet extends HttpServlet {
 
+    /**
+     * Retrieves the form input, checks each input to ensure it meets the
+     * database requirements, and tells the user if there has been an input
+     * error or if the employee was successfully added to the databse.
+     *
+     * @param request the user request
+     * @param response the user response
+     * @throws ServletException servlet error
+     * @throws IOException I/O exception
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
