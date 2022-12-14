@@ -2,24 +2,20 @@
 
 #### What were your AHA!! moments while completing this project?
 
-Replace this text with your thoughts.
+Some of my AHA moments was figuring out where I can eliminate duplicate code and
+trying to figure out where is best to use ServletContext or Session.
 
 #### What were your biggest challenges completing this project?
 
-Replace this text with your thoughts.
+My biggest challenge was attempting to get the actual results from the employee
+ArrayList in the Search object. I was able to see that the results were appearing because of the
+boolean within the search object but for a while, I couldn't get the ArrayList itself. It
+was such a relief to see that first_name value appear on the screen.
 
 #### What additional resources did you use or what help did you receive to complete your work? 
 
-Share your resources here. Example: "When completing this project, I used this [stackoverflow article](https://stackoverflow.com/questions/28177370/how-to-format-localdate-to-string), to format the date.   
+I used this article to help reduce the tons of duplicate catch statements that were needed in EmployeeDirectory:
+https://stackoverflow.com/questions/37763378/how-to-reduce-duplicated-code-of-same-exception-catching-operation-used-in-multi
 
-I also got stuck with a corrupt commit error message: 
-			
-			error: inflate: data stream error (incorrect header check)
-			error: corrupt loose object '5cdeb9c3a1fe164cb4d2779d1e0d9d9f4ef18c6a'
-			fatal: loose object 5cdeb9c3a1fe164cb4d2779d1e0d9d9f4ef18c6a (stored in .git/objects/5c/deb9c3a1fe164cb4d2779d1e0d9d9f4ef18c6a) 
-			
-Curtis, the IT Guide, helped me resolve it by using [this article](https://stackoverflow.com/questions/12571557/fixing-a-corrupt-loose-object-as-a-commit-in-git).
-
-If you didn't use any additional resources or receive any outside help, then indicate that as such. Example: "I did not use any outside resources on any parts of this submission - the work is entirely my own."
-
-Replace this text and the examples above with your own references. 
+I was having some issues verifying if there were actual results, this article helped me find the right method to use:
+https://stackoverflow.com/questions/867194/java-resultset-how-to-check-if-there-are-any-results
