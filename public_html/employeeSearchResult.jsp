@@ -12,7 +12,15 @@
 
     <c:import url="sidebar.jsp" />
 
-    ${search.isEmployeeFound()}
+    <c:choose>
+        <c:when test="${!search.isEmployeeFound()}" >
+            <h1>No employee was found</h1>
+        </c:when>
+        <c:otherwise>
+            <c:import url="employeeSearchResultTable.jsp" />
+        </c:otherwise>
+
+    </c:choose>
 
     <c:import url="footer.jsp" />
 

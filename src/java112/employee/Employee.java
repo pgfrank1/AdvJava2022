@@ -1,15 +1,41 @@
 package java112.employee;
 
 /**
- * The type Employee.
+ * This class contains all of the needed Employee information to add and get
+ * rows from the Student.employees database
+ *
+ * @author pgfrank1
+ * @version 1.0
+ * @since 11.0
  */
 public class Employee {
+    /**
+     * The Employee Id
+     */
     private String employeeId;
+    /**
+     * The Employee's first name
+     */
     private String firstName;
+    /**
+     * The Employee's last name
+     */
     private String lastName;
+    /**
+     * The Employee's social security number
+     */
     private String socialSecurityNumber;
+    /**
+     * The Employee's department number
+     */
     private String department;
+    /**
+     * The Employee's room number
+     */
     private String roomNumber;
+    /**
+     * The Employee's phone number
+     */
     private String phoneNumber;
 
     /**
@@ -136,18 +162,5 @@ public class Employee {
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeId='" + employeeId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
-                ", department='" + department + '\'' +
-                ", roomNumber='" + roomNumber + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
     }
 }
