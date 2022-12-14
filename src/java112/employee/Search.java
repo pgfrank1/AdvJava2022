@@ -16,7 +16,7 @@ public class Search {
      */
     private String searchType;
     /**
-     * The databse search term
+     * The database search term
      */
     private String searchTerm;
     /**
@@ -96,7 +96,7 @@ public class Search {
      *
      * @param results the results
      */
-    public void setResults(List<Employee> results) {
+    public void setResults(ArrayList<Employee> results) {
         this.results = results;
     }
 
