@@ -4,21 +4,34 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * The type Employee directory.
+ * This class contains the needed methods to connect and close all JDBC components.
+ *
+ * @author pgfrank1
+ * @version 1.0
+ * @since 11.0
  */
 public class EmployeeDirectory {
 
+    /**
+     * The project 4 properties file
+     */
     private final Properties properties;
 
     /**
      * Instantiates a new Employee directory.
      *
-     * @param properties the properties
+     * @param properties the project 4 properties file
      */
     public EmployeeDirectory(Properties properties) {
         this.properties = properties;
     }
 
+    /**
+     * This method attempts to make a connection to the MySQL database and returns
+     * that connection for other methods to use
+     *
+     * @return connection to the specified MySQL server
+     */
     private Connection databaseConnection() {
         Connection connection = null;
         try {
@@ -34,7 +47,7 @@ public class EmployeeDirectory {
     }
 
     /**
-     * Add employee to database.
+     * Adds a new employee to the database.
      *
      * @param firstName            the first name
      * @param lastName             the last name
@@ -74,22 +87,23 @@ public class EmployeeDirectory {
     }
 
     /**
-     * Search employee database search.
+     * Search employee database search by calling a method that is related to
+     * the searchTerm.
      *
      * @param searchTerm the search term
      * @param searchType the search type
-     * @return the search
+     * @return the search result set
      */
     public Search searchEmployeeDatabase(String searchTerm, String searchType) {
         Search search = new Search();
         search.setSearchTerm(searchTerm);
         search.setSearchType(searchType);
 
-        if ("id".equals(searchType)) {
+        if ("id".equals(search.getSearchType())) {
             searchByEmployeeId(search);
-        } else if ("first_name".equals(searchType)) {
+        } else if ("first_name".equals(search.getSearchType())) {
             searchByEmployeeFirstName(search);
-        } else if ("last_name".equals(searchType)) {
+        } else if ("last_name".equals(search.getSearchType())) {
             searchByEmployeeLastName(search);
         } else {
             throw new IllegalStateException("Unexpected value: " + searchType);
@@ -97,6 +111,11 @@ public class EmployeeDirectory {
         return search;
     }
 
+    /**
+     * This method searches the database via employee emp_id
+     * @param search holds the search term and type
+     *
+     */
     private void searchByEmployeeId(Search search) {
 
         Connection connection = databaseConnection();
@@ -112,11 +131,19 @@ public class EmployeeDirectory {
         } finally {
             try {
                 connection.close();
+
             } catch (Exception e) {
                 handleExceptions(e);
             }
         }
+
     }
+
+    /**
+     * This method searches the database via employee first_name
+     * @param search holds the search term and type
+     *
+     */
     private void searchByEmployeeFirstName(Search search) {
 
         Connection connection = databaseConnection();
@@ -133,12 +160,19 @@ public class EmployeeDirectory {
         } finally {
             try {
                 connection.close();
+
             } catch (Exception e) {
                 handleExceptions(e);
             }
         }
 
     }
+
+    /**
+     * This method searches the database via employee last_name
+     * @param search holds the search term and type
+     *
+     */
     private void searchByEmployeeLastName(Search search) {
 
         Connection connection = databaseConnection();
@@ -162,9 +196,9 @@ public class EmployeeDirectory {
     }
 
     /**
-     * Handle exceptions.
+     * This method handles all of the needed exceptions for each try statement
      *
-     * @param e the e
+     * @param e the current exception
      */
 // Remember this site:
     //https://stackoverflow.com/questions/37763378/how-to-reduce-duplicated-code-of-same-exception-catching-operation-used-in-multi
@@ -182,8 +216,16 @@ public class EmployeeDirectory {
         }
     }
 
+    /**
+     * This method searches for each employee related to the specified search
+     * term and type.
+     *
+     * @param search contains the current search term and type for the query
+     * @param preparedStatement contains the PreparedStatement needed for searching
+     *                          the database.
+     *
+     */
     private void searchForEmployee(Search search, PreparedStatement preparedStatement) {
-
         try {
             preparedStatement.setString(1, search.getSearchTerm());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -204,13 +246,20 @@ public class EmployeeDirectory {
                     employee.setPhoneNumber(resultSet.getString("phone"));
                     search.addFoundEmployee(employee);
                 }
-
             } else {
                 search.setEmployeeFound(false);
             }
+            resultSet.close();
+            preparedStatement.close();
         } catch (Exception e)
         {
             handleExceptions(e);
+        } finally {
+            try {
+            } catch (Exception e)
+            {
+                handleExceptions(e);
+            }
         }
     }
 }
