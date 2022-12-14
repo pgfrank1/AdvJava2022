@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="employee" items="${search}">
+            <c:forEach var="employee" items="${search.getResults()}">
                 <tr>
                     <td>${employee["employeeId"]}</td>
                     <td>${employee["firstName"]}</td>
