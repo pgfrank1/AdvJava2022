@@ -200,8 +200,6 @@ public class EmployeeDirectory {
      *
      * @param e the current exception
      */
-// Remember this site:
-    //https://stackoverflow.com/questions/37763378/how-to-reduce-duplicated-code-of-same-exception-catching-operation-used-in-multi
     private void handleExceptions (Exception e) {
 
         if (e instanceof SQLException) {
@@ -230,8 +228,6 @@ public class EmployeeDirectory {
             preparedStatement.setString(1, search.getSearchTerm());
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Remember:
-            // https://stackoverflow.com/questions/867194/java-resultset-how-to-check-if-there-are-any-results
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     search.setSearchTerm(resultSet.getString("last_name"));
@@ -254,12 +250,6 @@ public class EmployeeDirectory {
         } catch (Exception e)
         {
             handleExceptions(e);
-        } finally {
-            try {
-            } catch (Exception e)
-            {
-                handleExceptions(e);
-            }
         }
     }
 }
