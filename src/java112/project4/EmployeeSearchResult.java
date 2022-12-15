@@ -30,10 +30,11 @@ public class EmployeeSearchResult extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession();
 
-        ServletContext servletContext = getServletContext();
-        EmployeeDirectory employeeDirectory = (EmployeeDirectory) servletContext.getAttribute("employeeDirectory");
+        EmployeeDirectory employeeDirectory = (EmployeeDirectory) getServletContext().
+                getAttribute("employeeDirectory");
 
         String searchTerm = request.getParameter("search_term");
         String searchType = request.getParameter("search_type");
