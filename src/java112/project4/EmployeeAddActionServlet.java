@@ -37,8 +37,9 @@ public class EmployeeAddActionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ServletContext servletContext = getServletContext();
-        EmployeeDirectory employeeDirectory = (EmployeeDirectory) servletContext.getAttribute("employeeDirectory");
+        HttpSession session = request.getSession();
+        EmployeeDirectory employeeDirectory = (EmployeeDirectory) getServletContext().
+                getAttribute("employeeDirectory");
         String project4AddMessage;
 
         String firstName = request.getParameter("first_name");
@@ -71,11 +72,11 @@ public class EmployeeAddActionServlet extends HttpServlet {
                     department, roomNumber, phoneNumber);
             project4AddMessage = "Successfully added " + firstName + " " + lastName + " as a new employee";
         }
-        servletContext.setAttribute("project4AddMessage", project4AddMessage);
+
+        session.setAttribute("project4AddMessage", project4AddMessage);
 
         String url = "./EmployeeAddDisplayServlet";
 
         response.sendRedirect(url);
-
     }
 }
