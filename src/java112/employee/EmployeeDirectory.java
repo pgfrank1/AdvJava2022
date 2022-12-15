@@ -61,9 +61,9 @@ public class EmployeeDirectory {
             String roomNumber, String phoneNumber) {
 
         Connection connection = databaseConnection();
-        try {
-            PreparedStatement preparedStatement= connection.prepareStatement(
-                    "INSERT INTO employees VALUES (null, ?, ?, ?, ?, ?, ?)");
+
+        try (PreparedStatement preparedStatement= connection.prepareStatement(
+                        "INSERT INTO employees VALUES (null, ?, ?, ?, ?, ?, ?)")) {
 
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -71,18 +71,10 @@ public class EmployeeDirectory {
             preparedStatement.setString(4, department);
             preparedStatement.setString(5, roomNumber);
             preparedStatement.setString(6, phoneNumber);
-
             preparedStatement.executeUpdate();
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             handleExceptions(e);
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                handleExceptions(e);
-            }
         }
     }
 
@@ -99,119 +91,33 @@ public class EmployeeDirectory {
         search.setSearchTerm(searchTerm);
         search.setSearchType(searchType);
 
-        if ("id".equals(search.getSearchType())) {
-            searchByEmployeeId(search);
-        } else if ("first_name".equals(search.getSearchType())) {
-            searchByEmployeeFirstName(search);
-        } else if ("last_name".equals(search.getSearchType())) {
-            searchByEmployeeLastName(search);
-        } else {
-            throw new IllegalStateException("Unexpected value: " + searchType);
+        try (Connection connection = databaseConnection();
+              PreparedStatement preparedStatement = connection.prepareStatement(
+                      createPreparedStatement(search))){
+
+            preparedStatement.setString(1, search.getSearchTerm());
+            searchForEmployee(search, preparedStatement);
+        } catch (Exception e) {
+            handleExceptions(e);
         }
         return search;
     }
 
-    /**
-     * This method searches the database via employee emp_id
-     * @param search holds the search term and type
-     *
-     */
-    private void searchByEmployeeId(Search search) {
+    public String createPreparedStatement(Search search) {
 
-        Connection connection = databaseConnection();
+        String sqlStatement;
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM employees WHERE emp_id = ?");
-
-            searchForEmployee(search, preparedStatement);
-        } catch (Exception e)
-        {
-            handleExceptions(e);
-        } finally {
-            try {
-                connection.close();
-
-            } catch (Exception e) {
-                handleExceptions(e);
-            }
+        if ("id".equals(search.getSearchType())) {
+            sqlStatement = "SELECT * FROM employees WHERE emp_id = ?";
+        } else if ("first_name".equals(search.getSearchType())) {
+            sqlStatement = "SELECT * FROM employees WHERE first_name = ?";
+        } else if ("last_name".equals(search.getSearchType())) {
+            sqlStatement = "SELECT * FROM employees WHERE last_name = ?";
+        } else {
+            throw new IllegalStateException("Unexpected value: " + search.getSearchType());
         }
 
-    }
-
-    /**
-     * This method searches the database via employee first_name
-     * @param search holds the search term and type
-     *
-     */
-    private void searchByEmployeeFirstName(Search search) {
-
-        Connection connection = databaseConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM employees WHERE first_name = ?");
-
-            searchForEmployee(search, preparedStatement);
-
-        } catch (Exception e)
-        {
-            handleExceptions(e);
-        } finally {
-            try {
-                connection.close();
-
-            } catch (Exception e) {
-                handleExceptions(e);
-            }
-        }
-
-    }
-
-    /**
-     * This method searches the database via employee last_name
-     * @param search holds the search term and type
-     *
-     */
-    private void searchByEmployeeLastName(Search search) {
-
-        Connection connection = databaseConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM employees WHERE last_name = ?");
-
-            searchForEmployee(search, preparedStatement);
-
-        } catch (Exception e)
-        {
-            handleExceptions(e);
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                handleExceptions(e);
-            }
-        }
-    }
-
-    /**
-     * This method handles all of the needed exceptions for each try statement
-     *
-     * @param e the current exception
-     */
-    private void handleExceptions (Exception e) {
-
-        if (e instanceof SQLException) {
-            System.out.println("There was an error with the SQL server");
-            e.printStackTrace();
-        } else if (e instanceof ClassNotFoundException) {
-            System.out.println("Database driver class was not found.");
-            e.printStackTrace();
-        } else if (e != null) {
-            System.err.println("General Error");
-            e.printStackTrace();
-        }
+        return sqlStatement;
     }
 
     /**
@@ -224,32 +130,44 @@ public class EmployeeDirectory {
      *
      */
     private void searchForEmployee(Search search, PreparedStatement preparedStatement) {
-        try {
-            preparedStatement.setString(1, search.getSearchTerm());
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    search.setSearchTerm(resultSet.getString("last_name"));
-                    search.setEmployeeFound(true);
-                    Employee employee = new Employee();
-                    employee.setEmployeeId(resultSet.getString("emp_id"));
-                    employee.setFirstName(resultSet.getString("first_name"));
-                    employee.setLastName(resultSet.getString("last_name"));
-                    employee.setSocialSecurityNumber(resultSet.getString("ssn"));
-                    employee.setDepartment(resultSet.getString("dept"));
-                    employee.setRoomNumber(resultSet.getString("room"));
-                    employee.setPhoneNumber(resultSet.getString("phone"));
-                    search.addFoundEmployee(employee);
-                }
-            } else {
-                search.setEmployeeFound(false);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                search.setEmployeeFound(true);
+                Employee employee = new Employee();
+                employee.setEmployeeId(resultSet.getString("emp_id"));
+                employee.setFirstName(resultSet.getString("first_name"));
+                employee.setLastName(resultSet.getString("last_name"));
+                employee.setSocialSecurityNumber(resultSet.getString("ssn"));
+                employee.setDepartment(resultSet.getString("dept"));
+                employee.setRoomNumber(resultSet.getString("room"));
+                employee.setPhoneNumber(resultSet.getString("phone"));
+                search.addFoundEmployee(employee);
             }
-            resultSet.close();
-            preparedStatement.close();
         } catch (Exception e)
         {
             handleExceptions(e);
+        }
+    }
+
+    /**
+     * This method handles all the needed exceptions for each try statement
+     *
+     * @param e the current exception
+     */
+    private void handleExceptions (Exception e) {
+
+        if (e instanceof SQLException) {
+            System.out.println("There was an error querying and/or connecting with the SQL server");
+            e.printStackTrace();
+        } else if (e instanceof ClassNotFoundException) {
+            System.out.println("Database driver was not found.");
+            e.printStackTrace();
+        } else if (e instanceof NullPointerException) {
+            System.out.println("A needed value did not get assigned a value.");
+            e.printStackTrace();
+        } else if (e != null) {
+            System.err.println("General Error");
+            e.printStackTrace();
         }
     }
 }
