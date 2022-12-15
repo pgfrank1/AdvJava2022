@@ -13,17 +13,18 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="employee" items="${search.getResults()}">
-                <tr>
-                    <td>${employee.employeeId}</td>
-                    <td>${employee.firstName}</td>
-                    <td>${employee.lastName}</td>
-                    <td>${employee.socialSecurityNumber}</td>
-                    <td>${employee.department}</td>
-                    <td>${employee.roomNumber}</td>
-                    <td>${employee.phoneNumber}</td>
-                </tr>
-            </c:forEach>
+        <c:forEach var="employee" items="${search.getResults()}">
+            <tr>
+                <td>${employee.employeeId}</td>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+                <td>${employee.socialSecurityNumber}</td>
+                <td>${employee.department}</td>
+                <td>${employee.roomNumber}</td>
+                <td>${employee.phoneNumber}</td>
+            </tr>
+        </c:forEach>
+        <c:remove var="employee"/>
         </tbody>
     </table>
 </div>

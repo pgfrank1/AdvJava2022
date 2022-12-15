@@ -17,7 +17,7 @@
         <c:remove var="project4AddMessage" />
         <br>
 
-        <c:import url="employeeSearchResultTable.jsp" />
+        <c:import url="employeeAddNewEmployeeForm.jsp" />
 
         <c:import url="footer.jsp" />
 
